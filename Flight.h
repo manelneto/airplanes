@@ -6,8 +6,15 @@
 #define AIRPLANES_FLIGHT_H
 
 
-class Flight {
+#include <string>
+#include "Airport.h"
+#include "Airline.h"
 
+class Flight {
+private:
+    Airport source;
+    Airport target;
+    Airline airline;
 };
 
 

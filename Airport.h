@@ -6,8 +6,16 @@
 #define AIRPLANES_AIRPORT_H
 
 
-class Airport {
+#include <string>
 
+class Airport {
+private:
+    std::string code;
+    std::string name;
+    std::string city;
+    std::string country;
+    double latitude;
+    double longitude;
 };
 
 

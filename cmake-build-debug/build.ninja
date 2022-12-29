@@ -73,6 +73,12 @@ build CMakeFiles/airplanes.dir/Flight.cpp.obj: CXX_COMPILER__airplanes_Debug C$:
   OBJECT_DIR = CMakeFiles\airplanes.dir
   OBJECT_FILE_DIR = CMakeFiles\airplanes.dir
 
+build CMakeFiles/airplanes.dir/Management.cpp.obj: CXX_COMPILER__airplanes_Debug C$:/Users/manue/CLionProjects/airplanes/Management.cpp || cmake_object_order_depends_target_airplanes
+  DEP_FILE = CMakeFiles\airplanes.dir\Management.cpp.obj.d
+  FLAGS = -g -std=gnu++14
+  OBJECT_DIR = CMakeFiles\airplanes.dir
+  OBJECT_FILE_DIR = CMakeFiles\airplanes.dir
+
 
 # =============================================================================
 # Link build statements for EXECUTABLE target airplanes
@@ -81,7 +87,7 @@ build CMakeFiles/airplanes.dir/Flight.cpp.obj: CXX_COMPILER__airplanes_Debug C$:
 #############################################
 # Link the executable airplanes.exe
 
-build airplanes.exe: CXX_EXECUTABLE_LINKER__airplanes_Debug CMakeFiles/airplanes.dir/main.cpp.obj CMakeFiles/airplanes.dir/Airport.cpp.obj CMakeFiles/airplanes.dir/Airline.cpp.obj CMakeFiles/airplanes.dir/Flight.cpp.obj
+build airplanes.exe: CXX_EXECUTABLE_LINKER__airplanes_Debug CMakeFiles/airplanes.dir/main.cpp.obj CMakeFiles/airplanes.dir/Airport.cpp.obj CMakeFiles/airplanes.dir/Airline.cpp.obj CMakeFiles/airplanes.dir/Flight.cpp.obj CMakeFiles/airplanes.dir/Management.cpp.obj
   FLAGS = -g
   LINK_LIBRARIES = -lkernel32 -luser32 -lgdi32 -lwinspool -lshell32 -lole32 -loleaut32 -luuid -lcomdlg32 -ladvapi32
   OBJECT_DIR = CMakeFiles\airplanes.dir

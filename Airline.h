@@ -6,8 +6,14 @@
 #define AIRPLANES_AIRLINE_H
 
 
-class Airline {
+#include <string>
 
+class Airline {
+private:
+    std::string code;
+    std::string name;
+    std::string callsign;
+    std::string country;
 };
 
 
