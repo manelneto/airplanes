@@ -11,6 +11,9 @@
 #include "Airline.h"
 
 class Flight {
+public:
+    Flight(const Airport &source, const Airport &target, const Airline &airline);
+
 private:
     Airport source;
     Airport target;

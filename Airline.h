@@ -9,6 +9,9 @@
 #include <string>
 
 class Airline {
+public:
+    Airline(const std::string &code, const std::string &name, const std::string &callsign, const std::string &country);
+
 private:
     std::string code;
     std::string name;

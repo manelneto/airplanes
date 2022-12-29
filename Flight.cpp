@@ -3,3 +3,6 @@
 //
 
 #include "Flight.h"
+
+Flight::Flight(const Airport &source, const Airport &target, const Airline &airline) : source(source), target(target),
+                                                                                       airline(airline) {}
