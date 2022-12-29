@@ -3,7 +3,7 @@ project(airplanes)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(airplanes main.cpp)
+add_executable(airplanes main.cpp Airport.cpp Airport.h Airline.cpp Airline.h Flight.cpp Flight.h)
 
 # Doxygen Build
 find_package(Doxygen)
