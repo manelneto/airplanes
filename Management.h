@@ -7,7 +7,10 @@
 
 
 class Management {
-
+private:
+    void readAirportsFile();
+    void readAirlinesFile();
+    void readFlightsFile();
 };
 
 
