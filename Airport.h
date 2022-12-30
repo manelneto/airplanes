@@ -10,8 +10,12 @@
 
 class Airport {
 public:
+    Airport();
+    Airport(const std::string &code);
     Airport(const std::string &code, const std::string &name, const std::string &city, const std::string &country,
             double latitude, double longitude);
+    const std::string &getCode() const;
+    bool operator==(const Airport &rhs) const;
 
 private:
     std::string code;
@@ -21,6 +25,5 @@ private:
     double latitude;
     double longitude;
 };
-
 
 #endif //AIRPLANES_AIRPORT_H

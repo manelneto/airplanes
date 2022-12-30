@@ -1,3 +1,9 @@
 # ninja log v5
 0	562	6939580117228105	CMakeFiles/airplanes.dir/main.cpp.obj	5b98d3422950408b
 565	741	6939580118950270	airplanes.exe	25c1bebfc038b200
+23	604	6940702961534496	CMakeFiles/airplanes.dir/Airline.cpp.obj	241d9dccca7c268b
+15	609	6940702961534496	CMakeFiles/airplanes.dir/Airport.cpp.obj	a1615c7bce8b99cb
+43	930	6940702964870639	CMakeFiles/airplanes.dir/Graph.cpp.obj	f1e91e207af73faf
+6	944	6940702965016695	CMakeFiles/airplanes.dir/main.cpp.obj	5b98d3422950408b
+35	1277	6940702968343367	CMakeFiles/airplanes.dir/Management.cpp.obj	4f60da0f284d55d1
+1278	1979	6940702975213420	airplanes.exe	ff32c249a30e999a
