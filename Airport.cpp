@@ -6,9 +6,11 @@
 
 using namespace std;
 
+Airport::Airport(const string &code) : code(code) {}
+
 Airport::Airport(const string &code, const string &name, const string &city, const string &country, double latitude,
-                 double longitude) : code(code), name(name), city(city), country(country), latitude(latitude),
-                                     longitude(longitude) {}
+                 double longitude, int number) : code(code), name(name), city(city), country(country), latitude(latitude),
+                                     longitude(longitude), number(number) {}
 
 const string &Airport::getCode() const {
     return code;
@@ -32,6 +34,10 @@ double Airport::getLatitude() const {
 
 double Airport::getLongitude() const {
     return longitude;
+}
+
+int Airport::getNumber() const {
+    return number;
 }
 
 bool Airport::operator==(const Airport &rhs) const {

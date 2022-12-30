@@ -11,7 +11,6 @@ using namespace std;
 
 Management::Management() {
     readAirportsFile();
-    flights = Graph(airports.size(), true);
     readAirlinesFile();
     readFlightsFile();
 }
@@ -25,6 +24,7 @@ void Management::readAirportsFile() {
     }
     string line;
     getline(in, line);
+    int number = 1;
     while (getline(in, line)) {
         istringstream iss(line);
         string field;
@@ -38,8 +38,9 @@ void Management::readAirportsFile() {
         string country = fields[3];
         double latitude = stod(fields[4]);
         double longitude = stod(fields[5]);
-        Airport airport = Airport(code, name, city, country, latitude, longitude);
+        Airport airport = Airport(code, name, city, country, latitude, longitude, number++);
         airports.insert(airport);
+        flights.addNode(code);
     }
     cout << "Leitura de ficheiro airports.csv bem-sucedida." << endl;
 }
@@ -86,10 +87,9 @@ void Management::readFlightsFile() {
         unsigned f = 0;
         while (getline(iss, field, ','))
             fields[f++] = field;
-        Airport source = Airport(fields[0]);
-        Airport target = Airport(fields[1]);
-        Airline airline = Airline(fields[2]);
-        flights.addEdge(airportHash()(source), airportHash()(target), airlineHash()(airline));
+        auto source = airports.find(Airport(fields[0]));
+        auto target = airports.find(Airport(fields[1]));
+        flights.addEdge(source->getNumber(), target->getNumber(), fields[2]);
     }
     cout << "Leitura de ficheiro flights.csv bem-sucedida." << endl;
 }

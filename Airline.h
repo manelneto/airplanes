@@ -11,15 +11,10 @@
 class Airline {
 public:
     Airline(const std::string &code, const std::string &name, const std::string &callsign, const std::string &country);
-
     const std::string &getCode() const;
-
     const std::string &getName() const;
-
     const std::string &getCallsign() const;
-
     const std::string &getCountry() const;
-
     bool operator==(const Airline &rhs) const;
 
 private:

@@ -10,21 +10,16 @@
 
 class Airport {
 public:
+    Airport(const std::string &code);
     Airport(const std::string &code, const std::string &name, const std::string &city, const std::string &country,
-            double latitude, double longitude);
-
+            double latitude, double longitude, int number);
     const std::string &getCode() const;
-
     const std::string &getName() const;
-
     const std::string &getCity() const;
-
     const std::string &getCountry() const;
-
     double getLatitude() const;
-
     double getLongitude() const;
-
+    int getNumber() const;
     bool operator==(const Airport &rhs) const;
 
 private:
@@ -34,6 +29,7 @@ private:
     std::string country;
     double latitude;
     double longitude;
+    int number;
 };
 
 struct airportHash {
