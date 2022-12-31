@@ -8,8 +8,8 @@ using namespace std;
 
 Airport::Airport(const string &code) : code(code) {}
 
-Airport::Airport(const string &code, const string &name, const string &city, const string &country, double latitude,
-                 double longitude, int number) : code(code), name(name), city(city), country(country), latitude(latitude),
+Airport::Airport(const string &code, const string &name, const City &city, double latitude,
+                 double longitude, int number) : code(code), name(name), city(city), latitude(latitude),
                                      longitude(longitude), number(number) {}
 
 const string &Airport::getCode() const {
@@ -20,12 +20,8 @@ const string &Airport::getName() const {
     return name;
 }
 
-const string &Airport::getCity() const {
+const City &Airport::getCity() const {
     return city;
-}
-
-const string &Airport::getCountry() const {
-    return country;
 }
 
 double Airport::getLatitude() const {

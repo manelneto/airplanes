@@ -7,16 +7,16 @@
 
 
 #include <string>
+#include "City.h"
 
 class Airport {
 public:
     Airport(const std::string &code);
-    Airport(const std::string &code, const std::string &name, const std::string &city, const std::string &country,
+    Airport(const std::string &code, const std::string &name, const City &city,
             double latitude, double longitude, int number);
     const std::string &getCode() const;
     const std::string &getName() const;
-    const std::string &getCity() const;
-    const std::string &getCountry() const;
+    const City &getCity() const;
     double getLatitude() const;
     double getLongitude() const;
     int getNumber() const;
@@ -25,8 +25,7 @@ public:
 private:
     std::string code;
     std::string name;
-    std::string city;
-    std::string country;
+    City city;
     double latitude;
     double longitude;
     int number;

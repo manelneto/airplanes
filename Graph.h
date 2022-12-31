@@ -10,23 +10,29 @@
 #include <list>
 #include <vector>
 
+struct Edge {
+    int dest;
+    std::string airlineCode;
+};
+
+struct Node {
+    std::string airportCode;
+    std::list<Edge> adj;
+    bool visited;
+    int distance;
+};
+
 class Graph {
 public:
-    Graph(int nodes);
+    Graph(int n);
+    const std::vector<Node> &getNodes() const;
     void addNode(const std::string &airportCode);
     void addEdge(int source, int target, const std::string &airlineCode);
+    void univisitNodes();
     void dfs(int v);
     void bfs(int v);
+    void bfs(std::list<int> sources);
 private:
-    struct Edge {
-        int dest;
-        std::string airlineCode;
-    };
-    struct Node {
-        std::string airportCode;
-        std::list<Edge> adj;
-        bool visited;
-    };
     int n;
     std::vector<Node> nodes;
 };
