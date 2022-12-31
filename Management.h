@@ -38,8 +38,10 @@ private:
     std::pair<double, double> readLocation();
     std::list<Airport> getAirports(const City &city);
     std::list<Airport> getAirports(double latitude, double longitude, double range);
+    static std::unordered_set<int> getNumbers(const std::list<Airport> &airports);
     std::list<Airport> lerLocal();
     void melhorVoo();
+    void imprimirVoo(const std::vector<int> &path, const std::unordered_set<std::string> &desiredAirlinesCodes);
     void informacoes();
 };
 

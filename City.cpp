@@ -3,6 +3,9 @@
 //
 
 #include "City.h"
+#include <iostream>
+
+using namespace std;
 
 City::City() {}
 
@@ -17,6 +20,15 @@ const std::string &City::getCountry() const {
 }
 
 bool City::operator==(const City &rhs) const {
-    return city == rhs.city &&
-           country == rhs.country;
+    return toUpper(city) == toUpper(rhs.city) && toUpper(country) == toUpper(rhs.country);
+}
+
+void City::print() const {
+    cout << city << ", " << country;
+}
+
+std::string City::toUpper(string str) {
+    for (char &ch : str)
+        ch = toupper(ch);
+    return str;
 }

@@ -21,6 +21,7 @@ public:
     double getLongitude() const;
     int getNumber() const;
     bool operator==(const Airport &rhs) const;
+    void print() const;
 
 private:
     std::string code;

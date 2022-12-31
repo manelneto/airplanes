@@ -8,6 +8,7 @@
 
 #include <string>
 #include <list>
+#include <unordered_set>
 #include <vector>
 
 struct Edge {
@@ -26,15 +27,14 @@ class Graph {
 public:
     Graph(int n);
     const std::vector<Node> &getNodes() const;
+    std::vector<std::string> getAirlinesCodes(int src, int dest, std::unordered_set<std::string> desiredAirlinesCodes) const;
     void addNode(const std::string &airportCode);
     void addEdge(int source, int target, const std::string &airlineCode);
-    void univisitNodes();
-    void dfs(int v);
-    void bfs(int v);
-    void bfs(std::list<int> sources);
+    void bfs(const std::unordered_set<int> &sources, const std::unordered_set<int> &targets, const std::unordered_set<std::string> &airlinesCodes, std::vector<int> &previous);
 private:
     int n;
     std::vector<Node> nodes;
+    void univisitNodes();
 };
 
 

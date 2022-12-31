@@ -3,6 +3,9 @@
 //
 
 #include "Airline.h"
+#include <iostream>
+
+using namespace std;
 
 Airline::Airline(const std::string &code) : code(code) {}
 
@@ -27,4 +30,8 @@ const std::string &Airline::getCountry() const {
 
 bool Airline::operator==(const Airline &rhs) const {
     return code == rhs.code;
+}
+
+void Airline::print() const {
+    cout << name << " (" << code << ") - " << country;
 }

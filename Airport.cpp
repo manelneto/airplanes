@@ -3,6 +3,7 @@
 //
 
 #include "Airport.h"
+#include <iostream>
 
 using namespace std;
 
@@ -38,4 +39,10 @@ int Airport::getNumber() const {
 
 bool Airport::operator==(const Airport &rhs) const {
     return code == rhs.code;
+}
+
+void Airport::print() const {
+    cout << "Aeroporto " << name << " (" << code << ") - ";
+    city.print();
+    cout << " (" << latitude << ", " << longitude << ")";
 }

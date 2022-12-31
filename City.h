@@ -14,12 +14,13 @@ public:
     City(const std::string &city, const std::string &country);
     const std::string &getCity() const;
     const std::string &getCountry() const;
-
     bool operator==(const City &rhs) const;
+    void print() const;
 
 private:
     std::string city;
     std::string country;
+    static std::string toUpper(std::string str);
 };
 
 struct cityHash {
