@@ -32,7 +32,7 @@ public:
     std::vector<int> getMinPath(int dest, int min) const;
     void addNode(const std::string &airportCode);
     void addEdge(int source, int target, const std::string &airlineCode);
-    void bfs(const std::unordered_set<int> &sources, const std::unordered_set<int> &targets, const std::unordered_set<std::string> &filter = {});
+    void bfs(const std::unordered_set<int> &sources, const std::unordered_set<int> &targets = {}, const std::unordered_set<std::string> &filter = {});
 private:
     int n;
     std::vector<Node> nodes;

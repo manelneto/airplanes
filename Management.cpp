@@ -350,5 +350,133 @@ void Management::informacoes() {
 }
 
 void Management::partidas(const Airport &airport) {
-    
+    list<Edge> partidas = flights.getNodes()[airport.getNumber()].adj;
+    unsigned n = partidas.size();
+    if (n == 1)
+        cout << "Parte " << n << " voo do ";
+    else
+        cout << "Partem " << n << " voos do ";
+    airport.print();
+    cout << ": " << endl;
+    unsigned i = 1;
+    for (const Edge &edge : partidas) {
+        cout << "Voo " << i++ << " via ";
+        airlines.find(Airline(edge.airlineCode))->print();
+        cout << " para ";
+        airports.find(Airport(flights.getNodes()[edge.dest].airportCode))->print();
+        cout << endl;
+    }
+}
+
+void Management::companhiasAereas(const Airport &airport) {
+    list<Edge> partidas = flights.getNodes()[airport.getNumber()].adj;
+    unordered_set<string> companhiasAereas;
+    for (const Edge &edge : partidas)
+        if (companhiasAereas.find(edge.airlineCode) == companhiasAereas.end())
+            companhiasAereas.insert(edge.airlineCode);
+    unsigned n = companhiasAereas.size();
+    if (n == 1)
+        cout << "Parte " << n << " companhia aérea do ";
+    else
+        cout << "Partem " << n << " companhias aéreas do ";
+    airport.print();
+    cout << ": " << endl;
+    unsigned i = 1;
+    for (const string &companhiaAerea : companhiasAereas) {
+        cout << i++ << ". ";
+        airlines.find(Airline(companhiaAerea))->print();
+        cout << endl;
+    }
+}
+
+void Management::destinos(const Airport &airport) {
+    list<Edge> partidas = flights.getNodes()[airport.getNumber()].adj;
+    unordered_set<Airport, airportHash, airportHash> aeroportos;
+    unordered_set<City, cityHash, cityHash> destinos;
+    for (const Edge &edge : partidas) {
+        Airport destino = *airports.find(Airport(flights.getNodes()[edge.dest].airportCode));
+        if (aeroportos.find(destino) == aeroportos.end())
+            aeroportos.insert(destino);
+        if (destinos.find(destino.getCity()) == destinos.end())
+            destinos.insert(destino.getCity());
+    }
+    unsigned n = destinos.size();
+    if (n == 1)
+        cout << "É atingível " << n << " destino (" << aeroportos.size() << " aeroporto(s)) a partir do ";
+    else
+        cout << "São atingíveis " << n << " destinos (" << aeroportos.size() << " aeroportos) a partir do ";
+    airport.print();
+    cout << ": " << endl;
+    unsigned i = 1;
+    for (const City &city : destinos) {
+        cout << i++ << ". ";
+        city.print();
+        cout << endl;
+    }
+}
+
+void Management::paises(const Airport &airport) {
+    list<Edge> partidas = flights.getNodes()[airport.getNumber()].adj;
+    unordered_set<string> paises;
+    for (const Edge &edge : partidas) {
+        Airport destino = *airports.find(Airport(flights.getNodes()[edge.dest].airportCode));
+        if (paises.find(destino.getCity().getCountry()) == paises.end())
+            paises.insert(destino.getCity().getCountry());
+    }
+    unsigned n = paises.size();
+    if (n == 1)
+        cout << "É atingível " << n << " país a partir do ";
+    else
+        cout << "São atingíveis " << n << " países a partir do ";
+    airport.print();
+    cout << ": " << endl;
+    unsigned i = 1;
+    for (const string &pais : paises)
+        cout << i++ << ". " << pais << endl;
+}
+
+void Management::yVoos(const Airport &airport) {
+    cout << "Y: ";
+    int y = readInt();
+    flights.bfs({airport.getNumber()});
+    cout << "\n1 - Aeroportos\n2 - Cidades\n3 - Países\nOpção: ";
+    int option = readInt();
+    option = validateNumber(option, 1, 3);
+    if (option == 1)
+        yVoosAeroportos(airport, y);
+    else if (option == 2)
+        yVoosCidades(airport, y);
+    else
+        yVoosPaises(airport, y);
+}
+
+void Management::yVoosAeroportos(const Airport &airport, const int y) {
+    list<Airport> aeroportos;
+    for (const Node &node : flights.getNodes())
+        if (node.distance <= y && node.distance > 0)
+            aeroportos.push_back(*airports.find(Airport(node.airportCode)));
+    unsigned n = aeroportos.size();
+    if (n == 1)
+        cout << "É atingível " << n << " aeroporto a partir do ";
+    else
+        cout << "São atingíveis " << n << " aeroportos a partir do ";
+    airport.print();
+    if (y == 1)
+        cout << " usando um máximo de " << y << " voo:" << endl;
+    else
+        cout << " usando um máximo de " << y << " voos:" << endl;
+    unsigned i = 1;
+    for (const Airport &aeroporto : aeroportos) {
+        cout << i++ << ". ";
+        aeroporto.print();
+        cout << endl;
+    }
+}
+
+void Management::yVoosCidades(const Airport &airport, const int y) {
+
+}
+
+void Management::yVoosPaises(const Airport &airport, const int y) {
+
 }

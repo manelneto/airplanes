@@ -50,6 +50,9 @@ private:
     void destinos(const Airport &airport);
     void paises(const Airport &airport);
     void yVoos(const Airport &airport);
+    void yVoosAeroportos(const Airport &airport, const int y);
+    void yVoosCidades(const Airport &airport, const int y);
+    void yVoosPaises(const Airport &airport, const int y);
 };
 
 
