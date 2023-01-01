@@ -38,6 +38,7 @@ private:
     std::pair<double, double> readLocation();
     std::list<Airport> getAirports(const City &city);
     std::list<Airport> getAirports(double latitude, double longitude, double range);
+    std::list<Airport> getAirports(int y);
     static std::unordered_set<int> getNumbers(const std::list<Airport> &airports);
     std::unordered_set<std::string> getAirlinesCodes();
     std::list<Airport> lerLocal();
@@ -50,9 +51,9 @@ private:
     void destinos(const Airport &airport);
     void paises(const Airport &airport);
     void yVoos(const Airport &airport);
-    void yVoosAeroportos(const Airport &airport, const int y);
-    void yVoosCidades(const Airport &airport, const int y);
-    void yVoosPaises(const Airport &airport, const int y);
+    void yVoosAeroportos(const Airport &airport, int y);
+    void yVoosCidades(const Airport &airport, int y);
+    void yVoosPaises(const Airport &airport, int y);
 };
 
 

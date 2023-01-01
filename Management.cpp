@@ -223,6 +223,14 @@ list<Airport> Management::getAirports(double latitude, double longitude, double 
     return res;
 }
 
+list<Airport> Management::getAirports(int y) {
+    list<Airport> res;
+    for (const Node &node : flights.getNodes())
+        if (node.distance <= y && node.distance > 0)
+            res.push_back(*airports.find(Airport(node.airportCode)));
+    return res;
+}
+
 unordered_set<int> Management::getNumbers(const list<Airport> &airports) {
     unordered_set<int> numbers;
     for (const Airport &airport : airports)
@@ -451,10 +459,7 @@ void Management::yVoos(const Airport &airport) {
 }
 
 void Management::yVoosAeroportos(const Airport &airport, const int y) {
-    list<Airport> aeroportos;
-    for (const Node &node : flights.getNodes())
-        if (node.distance <= y && node.distance > 0)
-            aeroportos.push_back(*airports.find(Airport(node.airportCode)));
+    list<Airport> aeroportos = getAirports(y);
     unsigned n = aeroportos.size();
     if (n == 1)
         cout << "É atingível " << n << " aeroporto a partir do ";
@@ -474,9 +479,46 @@ void Management::yVoosAeroportos(const Airport &airport, const int y) {
 }
 
 void Management::yVoosCidades(const Airport &airport, const int y) {
-
+    list<Airport> aeroportos = getAirports(y);
+    unordered_set<City, cityHash, cityHash> cidades;
+    for (const Airport &aeroporto : aeroportos)
+        if (cidades.find(aeroporto.getCity()) == cidades.end())
+            cidades.insert(aeroporto.getCity());
+    unsigned n = cidades.size();
+    if (n == 1)
+        cout << "É atingível " << n << " cidade a partir do ";
+    else
+        cout << "São atingíveis " << n << " cidades a partir do ";
+    airport.print();
+    if (y == 1)
+        cout << " usando um máximo de " << y << " voo:" << endl;
+    else
+        cout << " usando um máximo de " << y << " voos:" << endl;
+    unsigned i = 1;
+    for (const City &city : cidades) {
+        cout << i++ << ". ";
+        city.print();
+        cout << endl;
+    }
 }
 
 void Management::yVoosPaises(const Airport &airport, const int y) {
-
+    list<Airport> aeroportos = getAirports(y);
+    unordered_set<string> paises;
+    for (const Airport &aeroporto : aeroportos)
+        if (paises.find(aeroporto.getCity().getCountry()) == paises.end())
+            paises.insert(aeroporto.getCity().getCountry());
+    unsigned n = paises.size();
+    if (n == 1)
+        cout << "É atingível " << n << " país a partir do ";
+    else
+        cout << "São atingíveis " << n << " países a partir do ";
+    airport.print();
+    if (y == 1)
+        cout << " usando um máximo de " << y << " voo:" << endl;
+    else
+        cout << " usando um máximo de " << y << " voos:" << endl;
+    unsigned i = 1;
+    for (const string &pais : paises)
+        cout << i++ << ". " << pais << endl;
 }
