@@ -13,14 +13,25 @@ const vector<Node> &Graph::getNodes() const {
     return nodes;
 }
 
-vector<string> Graph::getAirlinesCodes(int src, int dest, unordered_set<string> desiredAirlinesCodes) const {
+vector<string> Graph::getAirlinesCodes(int src, int dest, const unordered_set<string> &filter) const {
     vector<string> airlinesCodes;
     for (const Edge &edge : nodes[src].adj)
-        if (edge.dest == dest && (desiredAirlinesCodes.empty() || desiredAirlinesCodes.find(edge.airlineCode) != desiredAirlinesCodes.end()))
+        if (edge.dest == dest && (filter.empty() || filter.find(edge.airlineCode) != filter.end()))
             airlinesCodes.push_back(edge.airlineCode);
     return airlinesCodes;
 }
 
+vector<int> Graph::getMinPath(int dest, int min) const {
+    vector<int> path(min + 1);
+    int current = dest;
+    int i = min;
+    path[i--] = current;
+    while (i >= 0) {
+        path[i--] = nodes[current].previous;
+        current = nodes[current].previous;
+    }
+    return path;
+}
 
 void Graph::addNode(const std::string &airportCode) {
     n += 1;
@@ -33,15 +44,16 @@ void Graph::addEdge(int source, int target, const std::string &airlineCode) {
     nodes[source].adj.push_back({target, airlineCode});
 }
 
-void Graph::univisitNodes() {
+void Graph::unvisitNodes() {
     for (int i = 1; i <= n; i++) {
         nodes[i].visited = false;
         nodes[i].distance = INT_MAX;
+        nodes[i].previous = 0;
     }
 }
 
-void Graph::bfs(const unordered_set<int> &sources, const unordered_set<int> &targets, const std::unordered_set<std::string> &airlinesCodes, vector<int> &previous) {
-    univisitNodes();
+void Graph::bfs(const unordered_set<int> &sources, const unordered_set<int> &targets, const unordered_set<std::string> &filter) {
+    unvisitNodes();
     queue<int> q;
     for (int v : sources) {
         q.push(v);
@@ -52,13 +64,13 @@ void Graph::bfs(const unordered_set<int> &sources, const unordered_set<int> &tar
         int u = q.front();
         q.pop();
         for (const Edge &edge : nodes[u].adj) {
-            if (airlinesCodes.empty() || airlinesCodes.find(edge.airlineCode) != airlinesCodes.end()) {
+            if (filter.empty() || filter.find(edge.airlineCode) != filter.end()) {
                 int w = edge.dest;
                 if (!nodes[w].visited) {
                     q.push(w);
                     nodes[w].visited = true;
                     nodes[w].distance = nodes[u].distance + 1;
-                    previous[w] = u;
+                    nodes[w].previous = u;
                 }
                 if (targets.find(edge.dest) != targets.end())
                     return;

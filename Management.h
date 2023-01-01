@@ -27,11 +27,11 @@ private:
     static double haversine(double lat1, double lon1, double lat2, double lon2);
     static bool isInt(const std::string &str);
     static bool isDouble(const std::string &str);
-    static void toUpper(std::string &str);
+    static std::string toUpper(const std::string &str);
     static std::string readString();
     static int readInt();
     static double readDouble();
-    static int validateOption(int option, int min, int max);
+    static int validateNumber(int n, int min, int max);
     Airport readAirport() const;
     Airline readAirline() const;
     City readCity() const;
@@ -39,10 +39,17 @@ private:
     std::list<Airport> getAirports(const City &city);
     std::list<Airport> getAirports(double latitude, double longitude, double range);
     static std::unordered_set<int> getNumbers(const std::list<Airport> &airports);
+    std::unordered_set<std::string> getAirlinesCodes();
     std::list<Airport> lerLocal();
+    std::unordered_set<std::string> lerRede();
     void melhorVoo();
     void imprimirVoo(const std::vector<int> &path, const std::unordered_set<std::string> &desiredAirlinesCodes);
     void informacoes();
+    void partidas(const Airport &airport);
+    void companhiasAereas(const Airport &airport);
+    void destinos(const Airport &airport);
+    void paises(const Airport &airport);
+    void yVoos(const Airport &airport);
 };
 
 

@@ -20,15 +20,9 @@ const std::string &City::getCountry() const {
 }
 
 bool City::operator==(const City &rhs) const {
-    return toUpper(city) == toUpper(rhs.city) && toUpper(country) == toUpper(rhs.country);
+    return city == rhs.city && country == rhs.country;
 }
 
 void City::print() const {
     cout << city << ", " << country;
-}
-
-std::string City::toUpper(string str) {
-    for (char &ch : str)
-        ch = toupper(ch);
-    return str;
 }

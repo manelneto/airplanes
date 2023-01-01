@@ -122,14 +122,16 @@ bool Management::isDouble(const string &str) {
     return true;
 }
 
-void Management::toUpper(string &str) {
-    for (char &ch : str)
-        ch = toupper(ch);
+string Management::toUpper(const string &str) {
+    string upper;
+    for (const char &ch : str)
+        upper += (char) toupper(ch);
+    return upper;
 }
 
 string Management::readString() {
     string s;
-    cin >> s;
+    getline(cin, s);
     cout << endl;
     return s;
 }
@@ -154,19 +156,18 @@ double Management::readDouble() {
     return n;
 }
 
-int Management::validateOption(int option, int min, int max) {
-    while (option < min || option > max) {
-        cout << "O número inserido não é uma opção válida. Tente novamente." << endl;
-        option = readInt();
+int Management::validateNumber(int n, int min, int max) {
+    while (n < min || n > max) {
+        cout << "O número inserido não é válido. Tente novamente." << endl;
+        n = readInt();
     }
-    return option;
+    return n;
 }
 
 Airport Management::readAirport() const {
     cout << "Código IATA do Aeroporto: ";
     string code = readString();
-    toUpper(code);
-    Airport airport = Airport(code);
+    Airport airport = Airport(toUpper(code));
     while (airports.find(airport) == airports.end()) {
         cout << "Aeroporto não encontrado. Tente novamente." << endl;
         airport = readAirport();
@@ -177,8 +178,7 @@ Airport Management::readAirport() const {
 Airline Management::readAirline() const {
     cout << "Código ICAO da Companhia Aérea: ";
     string code = readString();
-    toUpper(code);
-    Airline airline = Airline(code);
+    Airline airline = Airline(toUpper(code));
     while (airlines.find(airline) == airlines.end()) {
         cout << "Companhia Aérea não encontrada. Tente novamente." << endl;
         airline = readAirline();
@@ -230,10 +230,17 @@ unordered_set<int> Management::getNumbers(const list<Airport> &airports) {
     return numbers;
 }
 
+unordered_set<string> Management::getAirlinesCodes() {
+    unordered_set<string> airlinesCodes;
+    for (const Airline &airline : airlines)
+        airlinesCodes.insert(airline.getCode());
+    return airlinesCodes;
+}
+
 int Management::menu() {
     cout << "\nMenu Principal:\n1 - Melhor maneira de voar entre dois locais\n2 - Informações sobre um aeroporto\n0 - Sair\nOpção: ";
     int option = readInt();
-    option = validateOption(option, 0, 2);
+    option = validateNumber(option, 0, 2);
     if (option == 1)
         melhorVoo();
     else if (option == 2)
@@ -246,7 +253,7 @@ int Management::menu() {
 list<Airport> Management::lerLocal() {
     cout << "\nLocal:\n1 - Aeroporto\n2 - Cidade\n3 - Localização\nOpção: ";
     int option = readInt();
-    option = validateOption(option, 1, 3);
+    option = validateNumber(option, 1, 3);
     list<Airport> res;
     if (option == 1)
         res.push_back(readAirport());
@@ -261,6 +268,28 @@ list<Airport> Management::lerLocal() {
     return res;
 }
 
+unordered_set<string> Management::lerRede() {
+    cout << "\nRede de Voos:\n1 - Todas as companhias aéreas\n2 - Especificar companhias aéreas pretendidas\n3 - Especificar companhias aéreas não prentendidas\nOpção: ";
+    int option = readInt();
+    option = validateNumber(option, 1, 3);
+    unordered_set<string> res;
+    if (option == 2) {
+        cout << "\nNúmero de companhias aéreas a incluir: ";
+        int n = readInt();
+        n = validateNumber(n, 1, (int) airlines.size());
+        for (int i = 0; i < n; i++)
+            res.insert(readAirline().getCode());
+    } else if (option == 3) {
+        cout << "\nNúmero de companhias aéreas a excluir: ";
+        int n = readInt();
+        n = validateNumber(n, 0, (int) airlines.size() - 1);
+        res = getAirlinesCodes();
+        for (int i = 0; i < n; i++)
+            res.erase(readAirline().getCode());
+    }
+    return res;
+}
+
 void Management::melhorVoo() {
     cout << "Local de Origem";
     list<Airport> origem = lerLocal();
@@ -268,42 +297,32 @@ void Management::melhorVoo() {
     cout << "Local de Destino";
     list<Airport> destino = lerLocal();
     unordered_set<int> targets = getNumbers(destino);
-    cout << "Rede de Voos:\n0 - Todas as companhias aéreas\nN (N > 0) - N companhias aéreas\nOpção: ";
-    int n = readInt();
-    unordered_set<string> desiredAirlinesCodes;
-    for (int i = 0; i < n; i++)
-        desiredAirlinesCodes.insert(readAirline().getCode());
-    vector<int> previous(flights.getNodes().size(), 0);
-    flights.bfs(sources, targets, desiredAirlinesCodes, previous);
-
+    unordered_set<string> filter = lerRede();
+    flights.bfs(sources, targets, filter);
     int min = INT_MAX;
-    int target = 0;
+    int dest = 0;
     for (const Airport &airport : destino)
         if (flights.getNodes()[airport.getNumber()].distance < min) {
             min = flights.getNodes()[airport.getNumber()].distance;
-            target = airport.getNumber();
+            dest = airport.getNumber();
         }
-
-    vector<int> path(min + 1);
-    int current = target;
-    int i = min;
-    path[i--] = current;
-    while (i >= 0) {
-        path[i--] = previous[current];
-        current = previous[current];
-    }
-    imprimirVoo(path, desiredAirlinesCodes);
+    if (min == INT_MAX) {
+        cout << "Não é possível voar de acordo com as condições pretendidas." << endl;
+        return;
+    } else
+        cout << "A melhor maneira de voar de acordo com as condições pretendidas consiste em " << min << " voo(s):\n" << endl;
+    imprimirVoo(flights.getMinPath(dest, min), filter);
 }
 
-void Management::imprimirVoo(const vector<int> &path, const unordered_set<string> &desiredAirlinesCodes) {
+void Management::imprimirVoo(const vector<int> &path, const unordered_set<string> &filter) {
     for (unsigned i = 0; i < path.size() - 1; i++) {
         int current = path[i];
         int next = path[i+1];
         Node node = flights.getNodes()[current];
         airports.find(Airport(node.airportCode))->print();
-        cout << "\nVoo via ";
-        vector<string> airlinesCodes = flights.getAirlinesCodes(current, next, desiredAirlinesCodes);
-        airlines.find(Airline(airlinesCodes.back()))->print();
+        cout << "\nVoo " << i + 1 << " via ";
+        vector<string> airlinesCodes = flights.getAirlinesCodes(current, next, filter);
+        airlines.find(Airline(airlinesCodes.front()))->print();
         for (unsigned j = 1; j < airlinesCodes.size(); j++) {
             cout << " OU ";
             airlines.find(Airline(airlinesCodes[j]))->print();
@@ -313,4 +332,23 @@ void Management::imprimirVoo(const vector<int> &path, const unordered_set<string
     airports.find(Airport(flights.getNodes()[path.back()].airportCode))->print();
 }
 
-void Management::informacoes() {}
+void Management::informacoes() {
+    Airport airport = readAirport();
+    cout << "\nInformações:\n1 - Quantos voos partem do aeroporto?\n2 - Quantas companhias aéreas diferentes partem do aeroporto?\n3 - Quantos destinos diferentes são atingíveis a partir do aeroporto?\n4 - Quantos países diferentes são atingíveis a partir do aeroporto?\n5 - Quantos aeroportos, cidades ou países são atingíveis usando um máximo de Y voos?\n0 - Voltar atrás\nOpção: ";
+    int option = readInt();
+    option = validateNumber(option, 0, 5);
+    if (option == 1)
+        partidas(airport);
+    else if (option == 2)
+        companhiasAereas(airport);
+    else if (option == 3)
+        destinos(airport);
+    else if (option == 4)
+        paises(airport);
+    else if (option == 5)
+        yVoos(airport);
+}
+
+void Management::partidas(const Airport &airport) {
+    
+}

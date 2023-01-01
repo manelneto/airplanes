@@ -20,12 +20,11 @@ public:
 private:
     std::string city;
     std::string country;
-    static std::string toUpper(std::string str);
 };
 
 struct cityHash {
     int operator()(const City &city) const {
-        const std::string& s = city.getCity();
+        const std::string& s = city.getCity() + city.getCountry();
         int v = 0;
         for (char i : s)
             v = 37*v + i;
