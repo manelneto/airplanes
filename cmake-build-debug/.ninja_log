@@ -69,3 +69,9 @@
 2609	3337	6943119485515228	airplanes.exe	4247659433aed1cb
 3	1816	6943119848831307	CMakeFiles/airplanes.dir/Management.cpp.obj	4f60da0f284d55d1
 1817	2412	6943119854891870	airplanes.exe	4247659433aed1cb
+27	1189	6943690002130614	CMakeFiles/airplanes.dir/City.cpp.obj	f0a0b67ea814a8b5
+10	1205	6943690002130614	CMakeFiles/airplanes.dir/Airport.cpp.obj	a1615c7bce8b99cb
+16	1294	6943690003254929	CMakeFiles/airplanes.dir/Airline.cpp.obj	241d9dccca7c268b
+4	1592	6943690006411444	CMakeFiles/airplanes.dir/main.cpp.obj	5b98d3422950408b
+22	3192	6943690022346149	CMakeFiles/airplanes.dir/Management.cpp.obj	4f60da0f284d55d1
+3192	4379	6943690032108869	airplanes.exe	4247659433aed1cb

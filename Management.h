@@ -6,8 +6,6 @@
 #define AIRPLANES_MANAGEMENT_H
 
 
-#include <unordered_set>
-#include <set>
 #include "Airport.h"
 #include "Airline.h"
 #include "Graph.h"
@@ -16,6 +14,7 @@ class Management {
 public:
     Management();
     int menu();
+
 private:
     std::unordered_set<Airport, airportHash, airportHash> airports;
     std::unordered_set<Airline, airlineHash, airlineHash> airlines;
@@ -28,32 +27,32 @@ private:
     static bool isInt(const std::string &str);
     static bool isDouble(const std::string &str);
     static std::string toUpper(const std::string &str);
-    static std::string readString();
+    static std::string readInput();
     static int readInt();
     static double readDouble();
     static int validateNumber(int n, int min, int max);
     Airport readAirport() const;
     Airline readAirline() const;
     City readCity() const;
-    std::pair<double, double> readLocation();
-    std::list<Airport> getAirports(const City &city);
-    std::list<Airport> getAirports(double latitude, double longitude, double range);
-    std::list<Airport> getAirports(int y);
+    std::pair<double, double> readLocation() const;
+    std::list<Airport> getAirports(const City &city) const;
+    std::list<Airport> getAirports(double latitude, double longitude, double range) const;
+    std::list<Airport> getAirports(int y) const;
     static std::unordered_set<int> getNumbers(const std::list<Airport> &airports);
-    std::unordered_set<std::string> getAirlinesCodes();
-    std::list<Airport> lerLocal();
-    std::unordered_set<std::string> lerRede();
+    std::unordered_set<std::string> getAirlinesCodes() const;
+    std::list<Airport> lerLocal() const;
+    std::unordered_set<std::string> lerRede() const;
     void melhorVoo();
-    void imprimirVoo(const std::vector<int> &path, const std::unordered_set<std::string> &desiredAirlinesCodes);
+    void imprimirVoo(const std::vector<int> &path, const std::unordered_set<std::string> &desiredAirlinesCodes) const;
     void informacoes();
-    void partidas(const Airport &airport);
-    void companhiasAereas(const Airport &airport);
-    void destinos(const Airport &airport);
-    void paises(const Airport &airport);
+    void partidas(const Airport &airport) const;
+    void companhiasAereas(const Airport &airport) const;
+    void destinos(const Airport &airport) const;
+    void paises(const Airport &airport) const;
     void yVoos(const Airport &airport);
-    void yVoosAeroportos(const Airport &airport, int y);
-    void yVoosCidades(const Airport &airport, int y);
-    void yVoosPaises(const Airport &airport, int y);
+    void yVoosAeroportos(const Airport &airport, int y) const;
+    void yVoosCidades(const Airport &airport, int y) const;
+    void yVoosPaises(const Airport &airport, int y) const;
 };
 
 

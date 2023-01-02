@@ -17,10 +17,6 @@ const string &Airport::getCode() const {
     return code;
 }
 
-const string &Airport::getName() const {
-    return name;
-}
-
 const City &Airport::getCity() const {
     return city;
 }

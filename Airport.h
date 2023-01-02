@@ -6,7 +6,6 @@
 #define AIRPLANES_AIRPORT_H
 
 
-#include <string>
 #include "City.h"
 
 class Airport {
@@ -15,7 +14,6 @@ public:
     Airport(const std::string &code, const std::string &name, const City &city,
             double latitude, double longitude, int number);
     const std::string &getCode() const;
-    const std::string &getName() const;
     const City &getCity() const;
     double getLatitude() const;
     double getLongitude() const;
@@ -36,7 +34,7 @@ struct airportHash {
     int operator()(const Airport &airport) const {
         const std::string& s = airport.getCode();
         int v = 0;
-        for (char i : s)
+        for (const char &i : s)
             v = 37*v + i;
         return v;
     }
