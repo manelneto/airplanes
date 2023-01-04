@@ -30,7 +30,8 @@ private:
     static std::string readInput();
     static int readInt();
     static double readDouble();
-    static int validateNumber(int n, int min, int max);
+    static int validateInt(int n, int min, int max);
+    static double validateDouble(double n, double min, double max);
     Airport readAirport() const;
     Airline readAirline() const;
     City readCity() const;

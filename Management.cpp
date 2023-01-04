@@ -116,9 +116,15 @@ bool Management::isInt(const string &str) {
 }
 
 bool Management::isDouble(const string &str) {
-    for (const char &ch : str)
-        if (!isdigit(ch) && ch != '.')
+    int points = 0;
+    for (unsigned i = 0; i < str.length(); i++) {
+        if (!isdigit(str[i]) && str[i] != '-' && str[i] != '.')
             return false;
+        if (str[i] == '.')
+            points++;
+        if (points > 1 || (str[i] == '-' && i != 0) || (str[i] == '.' && i == 0))
+            return false;
+    }
     return true;
 }
 
@@ -156,10 +162,18 @@ double Management::readDouble() {
     return n;
 }
 
-int Management::validateNumber(int n, int min, int max) {
+int Management::validateInt(int n, int min, int max) {
     while (n < min || n > max) {
-        cout << "O número inserido não é válido. Tente novamente: ";
+        cout << "O número inserido não é válido (deve pertencer ao intervalo [" << min << ", " << max << "]). Tente novamente: ";
         n = readInt();
+    }
+    return n;
+}
+
+double Management::validateDouble(double n, double min, double max) {
+    while (n < min || n > max) {
+        cout << "O número inserido não é válido (deve pertencer ao intervalo [" << min << ", " << max << "]). Tente novamente: ";
+        n = readDouble();
     }
     return n;
 }
@@ -202,8 +216,10 @@ City Management::readCity() const {
 pair<double, double> Management::readLocation() const {
     cout << "Latitude: ";
     double lat = readDouble();
+    lat = validateDouble(lat, -90.0, 90.0);
     cout << "Longitude: ";
     double lon = readDouble();
+    lon = validateDouble(lon, -180.0, 180.0);
     return make_pair(lat, lon);
 }
 
@@ -248,7 +264,7 @@ unordered_set<string> Management::getAirlinesCodes() const {
 int Management::menu() {
     cout << "\nMenu Principal:\n1 - Melhor maneira de voar entre dois locais\n2 - Informações sobre um aeroporto\n0 - Sair\nOpção: ";
     int option = readInt();
-    option = validateNumber(option, 0, 2);
+    option = validateInt(option, 0, 2);
     if (option == 1)
         melhorVoo();
     else if (option == 2)
@@ -261,7 +277,7 @@ int Management::menu() {
 list<Airport> Management::lerLocal() const {
     cout << "\nLocal:\n1 - Aeroporto\n2 - Cidade\n3 - Localização\nOpção: ";
     int option = readInt();
-    option = validateNumber(option, 1, 3);
+    option = validateInt(option, 1, 3);
     list<Airport> res;
     if (option == 1)
         res.push_back(readAirport());
@@ -279,18 +295,18 @@ list<Airport> Management::lerLocal() const {
 unordered_set<string> Management::lerRede() const {
     cout << "\nRede de Voos:\n1 - Todas as companhias aéreas\n2 - Especificar companhias aéreas pretendidas\n3 - Especificar companhias aéreas não prentendidas\nOpção: ";
     int option = readInt();
-    option = validateNumber(option, 1, 3);
+    option = validateInt(option, 1, 3);
     unordered_set<string> res;
     if (option == 2) {
         cout << "\nNúmero de companhias aéreas a incluir: ";
         int n = readInt();
-        n = validateNumber(n, 1, (int) airlines.size());
+        n = validateInt(n, 1, (int) airlines.size());
         for (int i = 0; i < n; i++)
             res.insert(readAirline().getCode());
     } else if (option == 3) {
         cout << "\nNúmero de companhias aéreas a excluir: ";
         int n = readInt();
-        n = validateNumber(n, 0, (int) airlines.size() - 1);
+        n = validateInt(n, 0, (int) airlines.size() - 1);
         res = getAirlinesCodes();
         for (int i = 0; i < n; i++)
             res.erase(readAirline().getCode());
@@ -346,7 +362,7 @@ void Management::informacoes() {
     Airport airport = readAirport();
     cout << "\nInformações:\n1 - Quantos voos partem do aeroporto?\n2 - Quantas companhias aéreas diferentes partem do aeroporto?\n3 - Quantos destinos diferentes são atingíveis a partir do aeroporto?\n4 - Quantos países diferentes são atingíveis a partir do aeroporto?\n5 - Quantos aeroportos, cidades ou países são atingíveis usando um máximo de Y voos?\n0 - Voltar atrás\nOpção: ";
     int option = readInt();
-    option = validateNumber(option, 0, 5);
+    option = validateInt(option, 0, 5);
     if (option == 1)
         partidas(airport);
     else if (option == 2)
@@ -451,7 +467,7 @@ void Management::yVoos(const Airport &airport) {
     flights.bfs({airport.getNumber()});
     cout << "\n1 - Aeroportos\n2 - Cidades\n3 - Países\nOpção: ";
     int option = readInt();
-    option = validateNumber(option, 1, 3);
+    option = validateInt(option, 1, 3);
     if (option == 1)
         yVoosAeroportos(airport, y);
     else if (option == 2)
