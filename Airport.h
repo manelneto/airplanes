@@ -32,10 +32,10 @@ private:
 
 struct airportHash {
     int operator()(const Airport &airport) const {
-        const std::string& s = airport.getCode();
+        const std::string& str = airport.getCode();
         int v = 0;
-        for (const char &i : s)
-            v = 37*v + i;
+        for (const char &ch : str)
+            v = 37*v + ch;
         return v;
     }
 

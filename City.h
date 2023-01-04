@@ -24,10 +24,10 @@ private:
 
 struct cityHash {
     int operator()(const City &city) const {
-        const std::string& s = city.getCity() + city.getCountry();
+        const std::string& str = city.getCity() + city.getCountry();
         int v = 0;
-        for (const char &i : s)
-            v = 37*v + i;
+        for (const char &ch : str)
+            v = 37*v + ch;
         return v;
     }
 

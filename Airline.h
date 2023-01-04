@@ -25,10 +25,10 @@ private:
 
 struct airlineHash {
     int operator()(const Airline &airline) const {
-        const std::string& s = airline.getCode();
+        const std::string& str = airline.getCode();
         int v = 0;
-        for (const char &i : s)
-            v = 37*v + i;
+        for (const char &ch : str)
+            v = 37*v + ch;
         return v;
     }
 

@@ -54,6 +54,7 @@ private:
     void yVoosAeroportos(const Airport &airport, int y) const;
     void yVoosCidades(const Airport &airport, int y) const;
     void yVoosPaises(const Airport &airport, int y) const;
+    void pontosArticulacao();
 };
 
 

@@ -10,12 +10,18 @@
 
 using namespace std;
 
+/**
+ *
+ */
 Management::Management() {
     readAirportsFile();
     readAirlinesFile();
     readFlightsFile();
 }
 
+/**
+ *
+ */
 void Management::readAirportsFile() {
     ifstream in("../files/airports.csv");
     if (!in.is_open()) {
@@ -48,6 +54,9 @@ void Management::readAirportsFile() {
     cout << "Leitura de ficheiro airports.csv bem-sucedida." << endl;
 }
 
+/**
+ *
+ */
 void Management::readAirlinesFile() {
     ifstream in("../files/airlines.csv");
     if (!in.is_open()) {
@@ -74,6 +83,9 @@ void Management::readAirlinesFile() {
     cout << "Leitura de ficheiro airlines.csv bem-sucedida." << endl;
 }
 
+/**
+ *
+ */
 void Management::readFlightsFile() {
     ifstream in("../files/flights.csv");
     if (!in.is_open()) {
@@ -97,6 +109,14 @@ void Management::readFlightsFile() {
     cout << "Leitura de ficheiro flights.csv bem-sucedida." << endl;
 }
 
+/**
+ *
+ * @param lat1
+ * @param lon1
+ * @param lat2
+ * @param lon2
+ * @return
+ */
 double Management::haversine(double lat1, double lon1, double lat2, double lon2) {
     double dLat = (lat2 - lat1) * M_PI / 180.0;
     double dLon = (lon2 - lon1) * M_PI / 180.0;
@@ -108,6 +128,11 @@ double Management::haversine(double lat1, double lon1, double lat2, double lon2)
     return rad * c;
 }
 
+/**
+ *
+ * @param str
+ * @return
+ */
 bool Management::isInt(const string &str) {
     for (const char &ch : str)
         if (!isdigit(ch))
@@ -115,6 +140,11 @@ bool Management::isInt(const string &str) {
     return true;
 }
 
+/**
+ *
+ * @param str
+ * @return
+ */
 bool Management::isDouble(const string &str) {
     int points = 0;
     for (unsigned i = 0; i < str.length(); i++) {
@@ -128,6 +158,11 @@ bool Management::isDouble(const string &str) {
     return true;
 }
 
+/**
+ *
+ * @param str
+ * @return
+ */
 string Management::toUpper(const string &str) {
     string upper;
     for (const char &ch : str)
@@ -135,6 +170,10 @@ string Management::toUpper(const string &str) {
     return upper;
 }
 
+/**
+ *
+ * @return
+ */
 string Management::readInput() {
     string s;
     getline(cin, s);
@@ -142,6 +181,10 @@ string Management::readInput() {
     return s;
 }
 
+/**
+ *
+ * @return
+ */
 int Management::readInt() {
     string s = readInput();
     while (!isInt(s)) {
@@ -152,6 +195,10 @@ int Management::readInt() {
     return n;
 }
 
+/**
+ *
+ * @return
+ */
 double Management::readDouble() {
     string s = readInput();
     while (!isDouble(s)) {
@@ -162,6 +209,13 @@ double Management::readDouble() {
     return n;
 }
 
+/**
+ *
+ * @param n
+ * @param min
+ * @param max
+ * @return
+ */
 int Management::validateInt(int n, int min, int max) {
     while (n < min || n > max) {
         cout << "O número inserido não é válido (deve pertencer ao intervalo [" << min << ", " << max << "]). Tente novamente: ";
@@ -170,6 +224,13 @@ int Management::validateInt(int n, int min, int max) {
     return n;
 }
 
+/**
+ *
+ * @param n
+ * @param min
+ * @param max
+ * @return
+ */
 double Management::validateDouble(double n, double min, double max) {
     while (n < min || n > max) {
         cout << "O número inserido não é válido (deve pertencer ao intervalo [" << min << ", " << max << "]). Tente novamente: ";
@@ -178,6 +239,10 @@ double Management::validateDouble(double n, double min, double max) {
     return n;
 }
 
+/**
+ *
+ * @return
+ */
 Airport Management::readAirport() const {
     cout << "Código IATA do Aeroporto: ";
     string code = readInput();
@@ -189,6 +254,10 @@ Airport Management::readAirport() const {
     return *airports.find(airport);
 }
 
+/**
+ *
+ * @return
+ */
 Airline Management::readAirline() const {
     cout << "Código ICAO da Companhia Aérea: ";
     string code = readInput();
@@ -200,6 +269,10 @@ Airline Management::readAirline() const {
     return *airlines.find(airline);
 }
 
+/**
+ *
+ * @return
+ */
 City Management::readCity() const {
     cout << "Cidade: ";
     string cityName = readInput();
@@ -213,6 +286,10 @@ City Management::readCity() const {
     return *cities.find(city);
 }
 
+/**
+ *
+ * @return
+ */
 pair<double, double> Management::readLocation() const {
     cout << "Latitude: ";
     double lat = readDouble();
@@ -223,6 +300,11 @@ pair<double, double> Management::readLocation() const {
     return make_pair(lat, lon);
 }
 
+/**
+ *
+ * @param city
+ * @return
+ */
 list<Airport> Management::getAirports(const City &city) const {
     list<Airport> res;
     for (const Airport &airport: airports)
@@ -231,6 +313,13 @@ list<Airport> Management::getAirports(const City &city) const {
     return res;
 }
 
+/**
+ *
+ * @param latitude
+ * @param longitude
+ * @param range
+ * @return
+ */
 list<Airport> Management::getAirports(const double latitude, const double longitude, const double range) const {
     list<Airport> res;
     for (const Airport &airport: airports)
@@ -239,6 +328,11 @@ list<Airport> Management::getAirports(const double latitude, const double longit
     return res;
 }
 
+/**
+ *
+ * @param y
+ * @return
+ */
 list<Airport> Management::getAirports(const int y) const {
     list<Airport> res;
     for (const Node &node : flights.getNodes())
@@ -247,6 +341,11 @@ list<Airport> Management::getAirports(const int y) const {
     return res;
 }
 
+/**
+ *
+ * @param airports
+ * @return
+ */
 unordered_set<int> Management::getNumbers(const list<Airport> &airports) {
     unordered_set<int> numbers;
     for (const Airport &airport : airports)
@@ -254,6 +353,10 @@ unordered_set<int> Management::getNumbers(const list<Airport> &airports) {
     return numbers;
 }
 
+/**
+ *
+ * @return
+ */
 unordered_set<string> Management::getAirlinesCodes() const {
     unordered_set<string> airlinesCodes;
     for (const Airline &airline : airlines)
@@ -261,19 +364,29 @@ unordered_set<string> Management::getAirlinesCodes() const {
     return airlinesCodes;
 }
 
+/**
+ *
+ * @return
+ */
 int Management::menu() {
-    cout << "\nMenu Principal:\n1 - Melhor maneira de voar entre dois locais\n2 - Informações sobre um aeroporto\n0 - Sair\nOpção: ";
+    cout << "\nMenu Principal:\n1 - Melhor maneira de voar entre dois locais\n2 - Informações sobre um aeroporto\n3 - Calcular os pontos de articulação existentes na rede\n0 - Sair\nOpção: ";
     int option = readInt();
-    option = validateInt(option, 0, 2);
+    option = validateInt(option, 0, 3);
     if (option == 1)
         melhorVoo();
     else if (option == 2)
         informacoes();
+    else if (option == 3)
+        pontosArticulacao();
     else
         return 0;
     return 1;
 }
 
+/**
+ *
+ * @return
+ */
 list<Airport> Management::lerLocal() const {
     cout << "\nLocal:\n1 - Aeroporto\n2 - Cidade\n3 - Localização\nOpção: ";
     int option = readInt();
@@ -292,6 +405,10 @@ list<Airport> Management::lerLocal() const {
     return res;
 }
 
+/**
+ *
+ * @return
+ */
 unordered_set<string> Management::lerRede() const {
     cout << "\nRede de Voos:\n1 - Todas as companhias aéreas\n2 - Especificar companhias aéreas pretendidas\n3 - Especificar companhias aéreas não prentendidas\nOpção: ";
     int option = readInt();
@@ -314,6 +431,9 @@ unordered_set<string> Management::lerRede() const {
     return res;
 }
 
+/**
+ *
+ */
 void Management::melhorVoo() {
     cout << "Local de Origem";
     list<Airport> origem = lerLocal();
@@ -340,6 +460,11 @@ void Management::melhorVoo() {
     imprimirVoo(flights.getMinPath(dest, min), filter);
 }
 
+/**
+ *
+ * @param path
+ * @param filter
+ */
 void Management::imprimirVoo(const vector<int> &path, const unordered_set<string> &filter) const {
     for (unsigned i = 0; i < path.size() - 1; i++) {
         int current = path[i];
@@ -358,6 +483,9 @@ void Management::imprimirVoo(const vector<int> &path, const unordered_set<string
     airports.find(Airport(flights.getNodes()[path.back()].airportCode))->print();
 }
 
+/**
+ *
+ */
 void Management::informacoes() {
     Airport airport = readAirport();
     cout << "\nInformações:\n1 - Quantos voos partem do aeroporto?\n2 - Quantas companhias aéreas diferentes partem do aeroporto?\n3 - Quantos destinos diferentes são atingíveis a partir do aeroporto?\n4 - Quantos países diferentes são atingíveis a partir do aeroporto?\n5 - Quantos aeroportos, cidades ou países são atingíveis usando um máximo de Y voos?\n0 - Voltar atrás\nOpção: ";
@@ -375,6 +503,10 @@ void Management::informacoes() {
         yVoos(airport);
 }
 
+/**
+ *
+ * @param airport
+ */
 void Management::partidas(const Airport &airport) const {
     list<Edge> partidas = flights.getNodes()[airport.getNumber()].adj;
     unsigned n = partidas.size();
@@ -394,12 +526,15 @@ void Management::partidas(const Airport &airport) const {
     }
 }
 
+/**
+ *
+ * @param airport
+ */
 void Management::companhiasAereas(const Airport &airport) const {
     list<Edge> partidas = flights.getNodes()[airport.getNumber()].adj;
     unordered_set<string> companhiasAereas;
     for (const Edge &edge : partidas)
-        if (companhiasAereas.find(edge.airlineCode) == companhiasAereas.end())
-            companhiasAereas.insert(edge.airlineCode);
+        companhiasAereas.insert(edge.airlineCode);
     unsigned n = companhiasAereas.size();
     if (n == 1)
         cout << "Parte " << n << " companhia aérea do ";
@@ -415,16 +550,18 @@ void Management::companhiasAereas(const Airport &airport) const {
     }
 }
 
+/**
+ *
+ * @param airport
+ */
 void Management::destinos(const Airport &airport) const {
     list<Edge> partidas = flights.getNodes()[airport.getNumber()].adj;
     unordered_set<Airport, airportHash, airportHash> aeroportos;
     unordered_set<City, cityHash, cityHash> destinos;
     for (const Edge &edge : partidas) {
         Airport destino = *airports.find(Airport(flights.getNodes()[edge.dest].airportCode));
-        if (aeroportos.find(destino) == aeroportos.end())
-            aeroportos.insert(destino);
-        if (destinos.find(destino.getCity()) == destinos.end())
-            destinos.insert(destino.getCity());
+        aeroportos.insert(destino);
+        destinos.insert(destino.getCity());
     }
     unsigned n = destinos.size();
     if (n == 1)
@@ -441,13 +578,16 @@ void Management::destinos(const Airport &airport) const {
     }
 }
 
+/**
+ *
+ * @param airport
+ */
 void Management::paises(const Airport &airport) const {
     list<Edge> partidas = flights.getNodes()[airport.getNumber()].adj;
     unordered_set<string> paises;
     for (const Edge &edge : partidas) {
         Airport destino = *airports.find(Airport(flights.getNodes()[edge.dest].airportCode));
-        if (paises.find(destino.getCity().getCountry()) == paises.end())
-            paises.insert(destino.getCity().getCountry());
+        paises.insert(destino.getCity().getCountry());
     }
     unsigned n = paises.size();
     if (n == 1)
@@ -461,6 +601,10 @@ void Management::paises(const Airport &airport) const {
         cout << i++ << ". " << pais << endl;
 }
 
+/**
+ *
+ * @param airport
+ */
 void Management::yVoos(const Airport &airport) {
     cout << "Y: ";
     int y = readInt();
@@ -476,6 +620,11 @@ void Management::yVoos(const Airport &airport) {
         yVoosPaises(airport, y);
 }
 
+/**
+ *
+ * @param airport
+ * @param y
+ */
 void Management::yVoosAeroportos(const Airport &airport, const int y) const {
     list<Airport> aeroportos = getAirports(y);
     unsigned n = aeroportos.size();
@@ -496,12 +645,16 @@ void Management::yVoosAeroportos(const Airport &airport, const int y) const {
     }
 }
 
+/**
+ *
+ * @param airport
+ * @param y
+ */
 void Management::yVoosCidades(const Airport &airport, const int y) const {
     list<Airport> aeroportos = getAirports(y);
     unordered_set<City, cityHash, cityHash> cidades;
     for (const Airport &aeroporto : aeroportos)
-        if (cidades.find(aeroporto.getCity()) == cidades.end())
-            cidades.insert(aeroporto.getCity());
+        cidades.insert(aeroporto.getCity());
     unsigned n = cidades.size();
     if (n == 1)
         cout << "É atingível " << n << " cidade a partir do ";
@@ -520,12 +673,16 @@ void Management::yVoosCidades(const Airport &airport, const int y) const {
     }
 }
 
+/**
+ *
+ * @param airport
+ * @param y
+ */
 void Management::yVoosPaises(const Airport &airport, const int y) const {
     list<Airport> aeroportos = getAirports(y);
     unordered_set<string> paises;
     for (const Airport &aeroporto : aeroportos)
-        if (paises.find(aeroporto.getCity().getCountry()) == paises.end())
-            paises.insert(aeroporto.getCity().getCountry());
+        paises.insert(aeroporto.getCity().getCountry());
     unsigned n = paises.size();
     if (n == 1)
         cout << "É atingível " << n << " país a partir do ";
@@ -539,4 +696,26 @@ void Management::yVoosPaises(const Airport &airport, const int y) const {
     unsigned i = 1;
     for (const string &pais : paises)
         cout << i++ << ". " << pais << endl;
+}
+
+/**
+ *
+ */
+void Management::pontosArticulacao() {
+    int index = 1;
+    unordered_set<string> points;
+    flights.unvisitNodes();
+    for (int v = 1; v <= flights.getN(); v++)
+        if (flights.getNodes()[v].num == 0) {
+            cout << "dfs called for " << v << endl;
+            flights.dfs_art(v, true, index, points);
+        }
+    unsigned n = points.size();
+    cout << "A rede de voos tem " << n << " pontos de articulação:" << endl;
+    unsigned i = 1;
+    for (const string &point : points) {
+        cout << i++ << ". ";
+        airports.find(Airport(point))->print();
+        cout << endl;
+    }
 }

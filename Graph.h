@@ -10,6 +10,7 @@
 #include <list>
 #include <unordered_set>
 #include <vector>
+#include <stack>
 
 struct Edge {
     int dest;
@@ -22,21 +23,26 @@ struct Node {
     bool visited;
     int distance;
     int previous;
+    int num;
+    int low;
+    bool inStack;
 };
 
 class Graph {
 public:
     Graph(int n);
+    int getN() const;
     const std::vector<Node> &getNodes() const;
     std::vector<std::string> getAirlinesCodes(int src, int dest, const std::unordered_set<std::string> &filter = {}) const;
     std::vector<int> getMinPath(int dest, int min) const;
     void addNode(const std::string &airportCode);
     void addEdge(int source, int target, const std::string &airlineCode);
     void bfs(const std::unordered_set<int> &sources, const std::unordered_set<int> &targets = {}, const std::unordered_set<std::string> &filter = {});
+    void dfs_art(int v, bool isRoot, int &index, std::unordered_set<std::string> &points);
+    void unvisitNodes();
 private:
     int n;
     std::vector<Node> nodes;
-    void unvisitNodes();
 };
 
 
