@@ -37,8 +37,11 @@ public:
     std::vector<int> getMinPath(int dest, int min) const;
     void addNode(const std::string &airportCode);
     void addEdge(int source, int target, const std::string &airlineCode);
-    void bfs(const std::unordered_set<int> &sources, const std::unordered_set<int> &targets = {}, const std::unordered_set<std::string> &filter = {});
+    void bfs(int v);
+    void bfs_flights(const std::unordered_set<int> &sources, const std::unordered_set<int> &targets = {}, const std::unordered_set<std::string> &filter = {});
+    void dfs(int v);
     void dfs_art(int v, bool isRoot, int &index, std::unordered_set<std::string> &points);
+    void dfs_scc(int v, int &index, int &scc);
     void unvisitNodes();
 private:
     int n;

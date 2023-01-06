@@ -47,6 +47,7 @@ void Management::readAirportsFile() {
         double longitude = stod(fields[5]);
         City city = City(cityName, country);
         Airport airport = Airport(code, name, city, latitude, longitude, number++);
+        countries.insert(country);
         cities.insert(city);
         airports.insert(airport);
         flights.addNode(code);
@@ -104,7 +105,8 @@ void Management::readFlightsFile() {
             fields[f++] = field;
         auto source = airports.find(Airport(fields[0]));
         auto target = airports.find(Airport(fields[1]));
-        flights.addEdge(source->getNumber(), target->getNumber(), fields[2]);
+        if (source != airports.end() && target != airports.end())
+            flights.addEdge(source->getNumber(), target->getNumber(), fields[2]);
     }
     cout << "Leitura de ficheiro flights.csv bem-sucedida." << endl;
 }
@@ -369,15 +371,19 @@ unordered_set<string> Management::getAirlinesCodes() const {
  * @return
  */
 int Management::menu() {
-    cout << "\nMenu Principal:\n1 - Melhor maneira de voar entre dois locais\n2 - Informações sobre um aeroporto\n3 - Calcular os pontos de articulação existentes na rede\n0 - Sair\nOpção: ";
+    cout << "\nMenu Principal:\n1 - Melhor maneira de voar entre dois locais\n2 - Informações sobre um aeroporto\n3 - Calcular estatísticas globais da rede\n4 - Calcular os pontos de articulação existentes na rede\n5 - Calcular o número de componentes conexos da rede\n0 - Sair\nOpção: ";
     int option = readInt();
-    option = validateInt(option, 0, 3);
+    option = validateInt(option, 0, 5);
     if (option == 1)
         melhorVoo();
     else if (option == 2)
         informacoes();
     else if (option == 3)
+        estatisticas();
+    else if (option == 4)
         pontosArticulacao();
+    else if (option == 5)
+        componentesConexos();
     else
         return 0;
     return 1;
@@ -442,7 +448,7 @@ void Management::melhorVoo() {
     list<Airport> destino = lerLocal();
     unordered_set<int> targets = getNumbers(destino);
     unordered_set<string> filter = lerRede();
-    flights.bfs(sources, targets, filter);
+    flights.bfs_flights(sources, targets, filter);
     int min = INT_MAX;
     int dest = 0;
     for (const Airport &airport : destino)
@@ -608,7 +614,7 @@ void Management::paises(const Airport &airport) const {
 void Management::yVoos(const Airport &airport) {
     cout << "Y: ";
     int y = readInt();
-    flights.bfs({airport.getNumber()});
+    flights.bfs_flights({airport.getNumber()});
     cout << "\n1 - Aeroportos\n2 - Cidades\n3 - Países\nOpção: ";
     int option = readInt();
     option = validateInt(option, 1, 3);
@@ -701,15 +707,36 @@ void Management::yVoosPaises(const Airport &airport, const int y) const {
 /**
  *
  */
+void Management::estatisticas() {
+    unsigned nAeroportos = airports.size();
+    unsigned nVoos = 0;
+    for (const Node &node : flights.getNodes())
+        nVoos += node.adj.size();
+    unsigned nCompanhiasAereas = airlines.size();
+    unsigned diametro = 0;
+    cout << "A calcular o diâmetro..." << endl;
+    for (int v = 1; v <= flights.getN(); v++) {
+        flights.bfs(v);
+        for (int u = 1; u <= flights.getN(); u++)
+            if (flights.getNodes()[u].visited && flights.getNodes()[u].distance > diametro)
+                diametro = flights.getNodes()[u].distance;
+    }
+    cout << "\nNúmero de Aeroportos: " << nAeroportos << endl;
+    cout << "Número de Voos: " << nVoos << endl;
+    cout << "Número de Companhias Aéreas: " << nCompanhiasAereas << endl;
+    cout << "Diâmetro: " << diametro << endl;
+}
+
+/**
+ *
+ */
 void Management::pontosArticulacao() {
     int index = 1;
     unordered_set<string> points;
     flights.unvisitNodes();
     for (int v = 1; v <= flights.getN(); v++)
-        if (flights.getNodes()[v].num == 0) {
-            cout << "dfs called for " << v << endl;
+        if (flights.getNodes()[v].num == 0)
             flights.dfs_art(v, true, index, points);
-        }
     unsigned n = points.size();
     cout << "A rede de voos tem " << n << " pontos de articulação:" << endl;
     unsigned i = 1;
@@ -718,4 +745,31 @@ void Management::pontosArticulacao() {
         airports.find(Airport(point))->print();
         cout << endl;
     }
+}
+
+void Management::componentesConexos() {
+    int cc = 0;
+    flights.unvisitNodes();
+    for (int v = 1; v <= flights.getN(); v++)
+        if (!flights.getNodes()[v].visited) {
+            cc++;
+            flights.dfs(v);
+        }
+    cout << "A rede de voos tem " << cc << " componentes conexos." << endl;
+    int scc = 0;
+    int index = 1;
+    flights.unvisitNodes();
+    for (int v = 1; v <= flights.getN(); v++)
+        if (flights.getNodes()[v].num == 0) {
+            flights.dfs_scc(v, index, scc);
+        }
+    cout << "A rede de voos tem " << scc << " componentes fortemente conexos." << endl;
+    int arestas = 0;
+    int nos = 0;
+    for (int v = 1; v <= flights.getN(); v++) {
+        nos += 1;
+        arestas += flights.getNodes()[v].adj.size();
+    }
+    cout << nos << " nos" << endl;
+    cout << arestas << " arestas" << endl;
 }

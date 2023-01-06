@@ -97,13 +97,33 @@ void Graph::unvisitNodes() {
     }
 }
 
+void Graph::bfs(int v) {
+    unvisitNodes();
+    queue<int> q;
+    q.push(v);
+    nodes[v].visited = true;
+    nodes[v].distance = 0;
+    while (!q.empty()) {
+        int u = q.front();
+        q.pop();
+        for (const Edge &edge : nodes[u].adj) {
+            int w = edge.dest;
+            if (!nodes[w].visited) {
+                q.push(w);
+                nodes[w].visited = true;
+                nodes[w].distance = nodes[u].distance + 1;
+            }
+        }
+    }
+}
+
 /**
  *
  * @param sources
  * @param targets
  * @param filter
  */
-void Graph::bfs(const unordered_set<int> &sources, const unordered_set<int> &targets, const unordered_set<std::string> &filter) {
+void Graph::bfs_flights(const unordered_set<int> &sources, const unordered_set<int> &targets, const unordered_set<std::string> &filter) {
     unvisitNodes();
     queue<int> q;
     for (int v : sources) {
@@ -127,6 +147,18 @@ void Graph::bfs(const unordered_set<int> &sources, const unordered_set<int> &tar
                     return;
             }
         }
+    }
+}
+/**
+ *
+ * @param v
+ */
+void Graph::dfs(int v) {
+    nodes[v].visited = true;
+    for (const Edge &edge : nodes[v].adj) {
+        int w = edge.dest;
+        if (!nodes[w].visited)
+            dfs(w);
     }
 }
 
@@ -158,3 +190,20 @@ void Graph::dfs_art(int v, bool isRoot, int &index, unordered_set<string> &point
     nodes[v].inStack = false;
 }
 
+void Graph::dfs_scc(int v, int &index, int &scc) {
+    nodes[v].num = index;
+    nodes[v].low = index;
+    index++;
+    nodes[v].inStack = true;
+    for (const Edge &edge : nodes[v].adj) {
+        int w = edge.dest;
+        if (nodes[w].num == 0) {
+            dfs_scc(w, index, scc);
+            nodes[v].low = min(nodes[v].low, nodes[w].low);
+        } else if (nodes[w].inStack)
+            nodes[v].low = min(nodes[v].low, nodes[w].num);
+    }
+    if (nodes[v].num == nodes[v].low)
+        scc++;
+    nodes[v].inStack = false;
+}

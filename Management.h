@@ -19,6 +19,7 @@ private:
     std::unordered_set<Airport, airportHash, airportHash> airports;
     std::unordered_set<Airline, airlineHash, airlineHash> airlines;
     std::unordered_set<City, cityHash, cityHash> cities;
+    std::unordered_set<std::string> countries;
     Graph flights = Graph(0);
     void readAirportsFile();
     void readAirlinesFile();
@@ -54,7 +55,9 @@ private:
     void yVoosAeroportos(const Airport &airport, int y) const;
     void yVoosCidades(const Airport &airport, int y) const;
     void yVoosPaises(const Airport &airport, int y) const;
+    void estatisticas();
     void pontosArticulacao();
+    void componentesConexos();
 };
 
 
