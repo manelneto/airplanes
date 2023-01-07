@@ -7,34 +7,34 @@
 
 using namespace std;
 
-/**
- *
- * @param n
+/**Construtor com parâmetro. Constrói um grafo com n vértices.
+ * Complexidade Temporal: O(n), sendo n o número de vértices mais um.
+ * @param n número de vértices
  */
 Graph::Graph(int n) : n(n), nodes(n + 1) {}
 
-/**
- *
- * @return
+/**Retorna o número de vértices do grafo.
+ * Complexidade Temporal: O(1)
+ * @return número de vértices do grafo
  */
 int Graph::getN() const {
     return n;
 }
 
-/**
- *
- * @return
+/**Retorna os vértices do grafo.
+ * Complexidade Temporal: O(1)
+ * @return vértices do grafo.
  */
 const vector<Node> &Graph::getNodes() const {
     return nodes;
 }
 
-/**
- *
- * @param src
- * @param dest
- * @param filter
- * @return
+/**Retorna os códigos ICAO das companhias áereas que fazem o voo do nó src para o nó dest, filtrando-os de acordo com filter.
+ * Complexidade Temporal: O(n), sendo n o tamanho da lista de adjacências do nó src
+ * @param src nó de origem
+ * @param dest nó de destino
+ * @param filter se não vazio, filtro de companhias aéreas a incluir
+ * @return códigos ICAO das companhias áereas que fazem o voo do nó src para o nó dest, filtrados de acordo com filter
  */
 vector<string> Graph::getAirlinesCodes(int src, int dest, const unordered_set<string> &filter) const {
     vector<string> airlinesCodes;
@@ -44,11 +44,11 @@ vector<string> Graph::getAirlinesCodes(int src, int dest, const unordered_set<st
     return airlinesCodes;
 }
 
-/**
- *
- * @param dest
- * @param min
- * @return
+/**Retorna os nós do caminho de comprimento min até ao nó dest. Só faz sentido ser chamada depois de uma BFS que calcule as distâncias de cada nó aos nós de origem da BFS.
+ * Complexidade Temporal: O(n), sendo n = min
+ * @param dest nó de destino do caminho
+ * @param min comprimento do caminho
+ * @return nós do caminho de comprimento min até ao nó dest
  */
 vector<int> Graph::getMinPath(int dest, int min) const {
     vector<int> path(min + 1);
@@ -62,20 +62,20 @@ vector<int> Graph::getMinPath(int dest, int min) const {
     return path;
 }
 
-/**
- *
- * @param airportCode
+/**Adiciona ao grafo um nó com airportCode passado pelo parâmetro homónimo (sem mais informação e sem arestas).
+ * Complexidade Temporal: O(1)
+ * @param airportCode código IATA do aeroporto a atribuir ao nó
  */
 void Graph::addNode(const std::string &airportCode) {
     n += 1;
     nodes.push_back({airportCode, {}, false, INT_MAX, 0, 0, 0, false});
 }
 
-/**
- *
- * @param source
- * @param target
- * @param airlineCode
+/**Adiciona ao grafo uma aresta dirigida do nó source para o nó target e com airlineCode passado pelo parâmetro homónimo.
+ * Complexidade Temporal: O(1)
+ * @param source nó de origem da aresta
+ * @param target nó de destino da aresta
+ * @param airlineCode código ICAO da companhia aérea a atribuir à aresta
  */
 void Graph::addEdge(int source, int target, const std::string &airlineCode) {
     if (source < 1 || source > n || target < 1 || target > n)
@@ -83,8 +83,8 @@ void Graph::addEdge(int source, int target, const std::string &airlineCode) {
     nodes[source].adj.push_back({target, airlineCode});
 }
 
-/**
- *
+/**Define todos os nós como não visitados, anulando os valores anteriores dos seus atributos.
+ * Complexidade Temporal: O(n)
  */
 void Graph::unvisitNodes() {
     for (int v = 1; v <= n; v++) {
@@ -97,6 +97,10 @@ void Graph::unvisitNodes() {
     }
 }
 
+/**Pesquisa em Largura a partir do nó v, calculando a distância de cada nó ao nó v.
+ * Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo e E o número de arestas do grafo
+ * @param v nó de origem da Pesquisa em Largura
+ */
 void Graph::bfs(int v) {
     unvisitNodes();
     queue<int> q;
@@ -117,11 +121,11 @@ void Graph::bfs(int v) {
     }
 }
 
-/**
- *
- * @param sources
- * @param targets
- * @param filter
+/**Pesquisa em Largura a partir dos nós em sources até aos nós em targets (se alcançáveis), atravessando apenas as arestas cujo código está em filter (se não vazio), calculando a distância de cada nó aos nós de origem e o seu antecessor na Pesquisa em Largura.
+ * Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo e E o número de arestas do grafo
+ * @param sources nós de origem da Pesquisa em Largura
+ * @param targets nós de destino da Pesquisa em Largura
+ * @param filter se não vazio, filtro dos códigos das arestas a atravessar
  */
 void Graph::bfs_flights(const unordered_set<int> &sources, const unordered_set<int> &targets, const unordered_set<std::string> &filter) {
     unvisitNodes();
@@ -149,9 +153,9 @@ void Graph::bfs_flights(const unordered_set<int> &sources, const unordered_set<i
         }
     }
 }
-/**
- *
- * @param v
+/**Pesquisa em Profunidade a partir do nó v.
+ * Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo e E o número de arestas do grafo
+ * @param v nó de origem da Pesquisa em Profundidade
  */
 void Graph::dfs(int v) {
     nodes[v].visited = true;
@@ -162,12 +166,12 @@ void Graph::dfs(int v) {
     }
 }
 
-/**
- *
- * @param v
- * @param isRoot
- * @param index
- * @param points
+/**Pesquisa em Profunidade a partir do nó v, encontrando os pontos de articulação do grafo de acordo com algoritmo semelhante ao de Tarjan.
+ * Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo e E o número de arestas do grafo
+ * @param v nó de origem da Pesquisa em Profundidade
+ * @param isRoot true se o nó de origem é uma raiz da árvore de DFS, false caso contrário
+ * @param index índice da Pesquisa em Profundidade para o algoritmo de Tarjan
+ * @param points pontos de articulação encontrados
  */
 void Graph::dfs_art(int v, bool isRoot, int &index, unordered_set<string> &points) {
     nodes[v].num = index;
@@ -190,20 +194,35 @@ void Graph::dfs_art(int v, bool isRoot, int &index, unordered_set<string> &point
     nodes[v].inStack = false;
 }
 
-void Graph::dfs_scc(int v, int &index, int &scc) {
+/**Pesquisa em Profunidade a partir do nó v, encontrando o número de componentes fortemente conexos do grafo de acordo com algoritmo de Tarjan.
+ * Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo e E o número de arestas do grafo
+ * @param v nó de origem da Pesquisa em Profundidade
+ * @param index índice da Pesquisa em Profundidade para o algoritmo de Tarjan
+ * @param s pilha de nós para o algoritmo de Tarjan
+ * @param scc número de componentes fortemente conexos encontrados
+ */
+void Graph::dfs_scc(int v, int &index, stack<int> &s, int &scc) {
     nodes[v].num = index;
     nodes[v].low = index;
     index++;
     nodes[v].inStack = true;
+    s.push(v);
     for (const Edge &edge : nodes[v].adj) {
         int w = edge.dest;
         if (nodes[w].num == 0) {
-            dfs_scc(w, index, scc);
+            dfs_scc(w, index, s, scc);
             nodes[v].low = min(nodes[v].low, nodes[w].low);
         } else if (nodes[w].inStack)
             nodes[v].low = min(nodes[v].low, nodes[w].num);
     }
-    if (nodes[v].num == nodes[v].low)
+    if (nodes[v].num == nodes[v].low) {
         scc++;
-    nodes[v].inStack = false;
+        while (true) {
+            int w = s.top();
+            s.pop();
+            nodes[w].inStack = false;
+            if (w == v)
+                break;
+        }
+    }
 }

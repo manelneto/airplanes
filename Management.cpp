@@ -10,8 +10,8 @@
 
 using namespace std;
 
-/**
- *
+/**Construtor sem parâmetros. Constrói um objeto de gestão com aeroportos, companhias aéreas e voos lidos de ficheiros.
+ * Complexidade Temporal: O()
  */
 Management::Management() {
     readAirportsFile();
@@ -19,8 +19,8 @@ Management::Management() {
     readFlightsFile();
 }
 
-/**
- *
+/**Lê o ficheiro de aeroportos e cria a tabela de hash de cidades, a tabela de hash de aeroportos e os nós do grafo de voos.
+ * Complexidade Temporal: O(n), sendo n o número de linhas do ficheiro de aeroportos
  */
 void Management::readAirportsFile() {
     ifstream in("../files/airports.csv");
@@ -47,7 +47,6 @@ void Management::readAirportsFile() {
         double longitude = stod(fields[5]);
         City city = City(cityName, country);
         Airport airport = Airport(code, name, city, latitude, longitude, number++);
-        countries.insert(country);
         cities.insert(city);
         airports.insert(airport);
         flights.addNode(code);
@@ -55,8 +54,8 @@ void Management::readAirportsFile() {
     cout << "Leitura de ficheiro airports.csv bem-sucedida." << endl;
 }
 
-/**
- *
+/**Lê o ficheiro de companhias aéreas e cria a tabela de hash de companhias aéreas.
+ * Complexidade Temporal: O(n), sendo n o número de linhas do ficheiro de companhias aéreas
  */
 void Management::readAirlinesFile() {
     ifstream in("../files/airlines.csv");
@@ -84,8 +83,8 @@ void Management::readAirlinesFile() {
     cout << "Leitura de ficheiro airlines.csv bem-sucedida." << endl;
 }
 
-/**
- *
+/**Lê o ficheiro de voos e cria as arestas do grafo de voos.
+ * Complexidade Temporal: O(n), sendo n o número de linhas do ficheiro de voos
  */
 void Management::readFlightsFile() {
     ifstream in("../files/flights.csv");
@@ -111,13 +110,13 @@ void Management::readFlightsFile() {
     cout << "Leitura de ficheiro flights.csv bem-sucedida." << endl;
 }
 
-/**
- *
- * @param lat1
- * @param lon1
- * @param lat2
- * @param lon2
- * @return
+/**Calcula a distância entre dois pontos dadas as suas latitudes e longitudes.
+ * Complexidade Temporal: O(1)
+ * @param lat1 latitude do ponto 1
+ * @param lon1 longitude do ponto 1
+ * @param lat2 latitude do ponto 2
+ * @param lon2 longitude do ponto 2
+ * @return distância entre os pontos 1 e 2
  */
 double Management::haversine(double lat1, double lon1, double lat2, double lon2) {
     double dLat = (lat2 - lat1) * M_PI / 180.0;
@@ -130,10 +129,10 @@ double Management::haversine(double lat1, double lon1, double lat2, double lon2)
     return rad * c;
 }
 
-/**
- *
- * @param str
- * @return
+/**Verifica se str é um número inteiro não negativo.
+ * Complexidade Temporal: O(n), sendo n o comprimento de str
+ * @param str string a verificar
+ * @return true se str é um número inteiro não negativo, false caso contrário
  */
 bool Management::isInt(const string &str) {
     for (const char &ch : str)
@@ -142,10 +141,10 @@ bool Management::isInt(const string &str) {
     return true;
 }
 
-/**
- *
- * @param str
- * @return
+/**Verifica se str é um número decimal.
+ * Complexidade Temporal: O(n), sendo n o comprimento de str
+ * @param str string a verificar
+ * @return true se str é um número decimal, false caso contrário
  */
 bool Management::isDouble(const string &str) {
     int points = 0;
@@ -160,10 +159,10 @@ bool Management::isDouble(const string &str) {
     return true;
 }
 
-/**
- *
- * @param str
- * @return
+/**Retorna str com todos os caracteres convertidos para maiúscula.
+ * Complexidade Temporal: O(n), sendo n o comprimento de str
+ * @param str string a copiar e converter os caracteres para maiúscula
+ * @return str com todos os caracteres convertidos para maiúscula
  */
 string Management::toUpper(const string &str) {
     string upper;
@@ -172,9 +171,9 @@ string Management::toUpper(const string &str) {
     return upper;
 }
 
-/**
- *
- * @return
+/**Lê o input do utilizador.
+ * Complexidade Temporal: O(n), sendo n o comprimento do input do utilizador
+ * @return input do utilizador
  */
 string Management::readInput() {
     string s;
@@ -183,9 +182,9 @@ string Management::readInput() {
     return s;
 }
 
-/**
- *
- * @return
+/**Lê o input do utilizador, forçando a que seja um número inteiro não negativo.
+ * Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
+ * @return número inteiro não negativo introduzido pelo utilizador
  */
 int Management::readInt() {
     string s = readInput();
@@ -197,9 +196,9 @@ int Management::readInt() {
     return n;
 }
 
-/**
- *
- * @return
+/**Lê o input do utilizador, forçando a que seja um número.
+ * Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
+ * @return número introduzido pelo utilizador
  */
 double Management::readDouble() {
     string s = readInput();
@@ -211,12 +210,12 @@ double Management::readDouble() {
     return n;
 }
 
-/**
- *
- * @param n
- * @param min
- * @param max
- * @return
+/**Valida um número inteiro, isto é, verifica se n pertence ao intervalo [min, max]. Enquanto o número for inválido, tenta ler um número válido.
+ * Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
+ * @param n número a validar
+ * @param min limite inferior do intervalo de números válidos
+ * @param max limite superior do intervalo de números válidos
+ * @return número inteiro válido introduzido pelo utilizador
  */
 int Management::validateInt(int n, int min, int max) {
     while (n < min || n > max) {
@@ -226,12 +225,12 @@ int Management::validateInt(int n, int min, int max) {
     return n;
 }
 
-/**
- *
- * @param n
- * @param min
- * @param max
- * @return
+/**Valida um número decimal, isto é, verifica se n pertence ao intervalo [min, max]. Enquanto o número for inválido, tenta ler um número válido.
+ * Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
+ * @param n número a validar
+ * @param min limite inferior do intervalo de números válidos
+ * @param max limite superior do intervalo de números válidos
+ * @return número decimal válido introduzido pelo utilizador
  */
 double Management::validateDouble(double n, double min, double max) {
     while (n < min || n > max) {
@@ -241,9 +240,9 @@ double Management::validateDouble(double n, double min, double max) {
     return n;
 }
 
-/**
- *
- * @return
+/**Lê um aeroporto através do seu código IATA, forçando a que ele exista.
+ * Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
+ * @return aeroporto existente introduzido pelo utilizador
  */
 Airport Management::readAirport() const {
     cout << "Código IATA do Aeroporto: ";
@@ -256,9 +255,9 @@ Airport Management::readAirport() const {
     return *airports.find(airport);
 }
 
-/**
- *
- * @return
+/**Lê uma companhia aérea através do seu código ICAO, forçando a que ela exista.
+ * Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
+ * @return companhia aérea existente introduzido pelo utilizador
  */
 Airline Management::readAirline() const {
     cout << "Código ICAO da Companhia Aérea: ";
@@ -271,9 +270,9 @@ Airline Management::readAirline() const {
     return *airlines.find(airline);
 }
 
-/**
- *
- * @return
+/**Lê uma cidade através do seu nome e país, forçando a que ela exista.
+ * Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
+ * @return cidade existente introduzido pelo utilizador
  */
 City Management::readCity() const {
     cout << "Cidade: ";
@@ -288,11 +287,11 @@ City Management::readCity() const {
     return *cities.find(city);
 }
 
-/**
- *
- * @return
+/**Lê uma localização através da sua latitude e longitude, forçando a que ela seja válida.
+ * Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
+ * @return localização (par latitude-longitude) válida introduzida pelo utilizador
  */
-pair<double, double> Management::readLocation() const {
+pair<double, double> Management::readLocation() {
     cout << "Latitude: ";
     double lat = readDouble();
     lat = validateDouble(lat, -90.0, 90.0);
@@ -302,10 +301,10 @@ pair<double, double> Management::readLocation() const {
     return make_pair(lat, lon);
 }
 
-/**
- *
- * @param city
- * @return
+/**Retorna os aeroportos de uma cidade.
+ * Complexidade Temporal: O(n), sendo n o tamanho de airports
+ * @param city cidade
+ * @return aeroportos da cidade
  */
 list<Airport> Management::getAirports(const City &city) const {
     list<Airport> res;
@@ -315,12 +314,12 @@ list<Airport> Management::getAirports(const City &city) const {
     return res;
 }
 
-/**
- *
- * @param latitude
- * @param longitude
- * @param range
- * @return
+/**Retorna os aeroportos a menos de range quilómetros de uma localização.
+ * Complexidade Temporal: O(n), sendo n o tamanho de airports
+ * @param latitude latitude da localização
+ * @param longitude longitude da localização
+ * @param range distância máxima da localização para aceitar aeroporto
+ * @return aeroportos a menos de range quilómetros da localização dada pelo par latitude-longitude
  */
 list<Airport> Management::getAirports(const double latitude, const double longitude, const double range) const {
     list<Airport> res;
@@ -330,10 +329,10 @@ list<Airport> Management::getAirports(const double latitude, const double longit
     return res;
 }
 
-/**
- *
- * @param y
- * @return
+/**Retorna os aeroportos cuja distância calculada pertence ao intervalo ]0, y]
+ * Complexidade Temporal: O(n), sendo n o tamanho de nós do grafo flights
+ * @param y distância máxima para aceitar aeroporto
+ * @return aeroportos cuja distância calculada pertence ao intervalo ]0, y]
  */
 list<Airport> Management::getAirports(const int y) const {
     list<Airport> res;
@@ -343,10 +342,10 @@ list<Airport> Management::getAirports(const int y) const {
     return res;
 }
 
-/**
- *
- * @param airports
- * @return
+/**Retorna os números dos aeroportos em airports.
+ * Complexidade Temporal: O(n), sendo n o tamanho de airports
+ * @param airports aeroportos
+ * @return números dos aeroportos em airports
  */
 unordered_set<int> Management::getNumbers(const list<Airport> &airports) {
     unordered_set<int> numbers;
@@ -355,9 +354,9 @@ unordered_set<int> Management::getNumbers(const list<Airport> &airports) {
     return numbers;
 }
 
-/**
- *
- * @return
+/**Retorna os códigos ICAO das companhias aéreas em airlines.
+ * Complexidade Temporal: O(n), sendo n o tamanho de airlines
+ * @return códigos ICAO das companhias aéreas em airlines
  */
 unordered_set<string> Management::getAirlinesCodes() const {
     unordered_set<string> airlinesCodes;
@@ -366,9 +365,9 @@ unordered_set<string> Management::getAirlinesCodes() const {
     return airlinesCodes;
 }
 
-/**
- *
- * @return
+/**Apresenta o menu principal. Permite selecionar uma das opções apresentadas.
+ * Complexidade Temporal: amplamente variável de acordo com o input
+ * @return 0 se o utilizador pretender sair, 1 caso contrário
  */
 int Management::menu() {
     cout << "\nMenu Principal:\n1 - Melhor maneira de voar entre dois locais\n2 - Informações sobre um aeroporto\n3 - Calcular estatísticas globais da rede\n4 - Calcular os pontos de articulação existentes na rede\n5 - Calcular o número de componentes conexos da rede\n0 - Sair\nOpção: ";
@@ -389,9 +388,9 @@ int Management::menu() {
     return 1;
 }
 
-/**
- *
- * @return
+/**Lê um local (aeroporto, cidade ou localização) e retorna os aeroportos desse local.
+ * Complexidade Temporal: O(n), sendo n o número de aeroportos do local lido
+ * @return aeroportos do local lido
  */
 list<Airport> Management::lerLocal() const {
     cout << "\nLocal:\n1 - Aeroporto\n2 - Cidade\n3 - Localização\nOpção: ";
@@ -411,9 +410,9 @@ list<Airport> Management::lerLocal() const {
     return res;
 }
 
-/**
- *
- * @return
+/**Lê uma rede de voos (códigos ICAO das companhias áereas a incluir ou a excluir) e retorna os códigos ICAO das companhias aéreas dessa rede de voos.
+ * Complexidade Temporal: O(n), sendo n o número de companhias aéreas da rede de voos lida
+ * @return códigos ICAO das companhias aéreas da rede de voos lida
  */
 unordered_set<string> Management::lerRede() const {
     cout << "\nRede de Voos:\n1 - Todas as companhias aéreas\n2 - Especificar companhias aéreas pretendidas\n3 - Especificar companhias aéreas não prentendidas\nOpção: ";

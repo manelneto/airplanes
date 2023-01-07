@@ -19,7 +19,6 @@ private:
     std::unordered_set<Airport, airportHash, airportHash> airports;
     std::unordered_set<Airline, airlineHash, airlineHash> airlines;
     std::unordered_set<City, cityHash, cityHash> cities;
-    std::unordered_set<std::string> countries;
     Graph flights = Graph(0);
     void readAirportsFile();
     void readAirlinesFile();
@@ -36,7 +35,7 @@ private:
     Airport readAirport() const;
     Airline readAirline() const;
     City readCity() const;
-    std::pair<double, double> readLocation() const;
+    static std::pair<double, double> readLocation() ;
     std::list<Airport> getAirports(const City &city) const;
     std::list<Airport> getAirports(double latitude, double longitude, double range) const;
     std::list<Airport> getAirports(int y) const;

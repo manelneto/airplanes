@@ -41,7 +41,7 @@ public:
     void bfs_flights(const std::unordered_set<int> &sources, const std::unordered_set<int> &targets = {}, const std::unordered_set<std::string> &filter = {});
     void dfs(int v);
     void dfs_art(int v, bool isRoot, int &index, std::unordered_set<std::string> &points);
-    void dfs_scc(int v, int &index, int &scc);
+    void dfs_scc(int v, int &index, std::stack<int> &s, int &scc);
     void unvisitNodes();
 private:
     int n;
