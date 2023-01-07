@@ -8,13 +8,13 @@
 using namespace std;
 
 /**Construtor com parâmetro. Constrói um grafo com n vértices.
- * Complexidade Temporal: O(n), sendo n o número de vértices mais um.
+ * <br>Complexidade Temporal: O(n), sendo n o número de vértices mais um.
  * @param n número de vértices
  */
 Graph::Graph(int n) : n(n), nodes(n + 1) {}
 
 /**Retorna o número de vértices do grafo.
- * Complexidade Temporal: O(1)
+ * <br>Complexidade Temporal: O(1)
  * @return número de vértices do grafo
  */
 int Graph::getN() const {
@@ -22,7 +22,7 @@ int Graph::getN() const {
 }
 
 /**Retorna os vértices do grafo.
- * Complexidade Temporal: O(1)
+ * <br>Complexidade Temporal: O(1)
  * @return vértices do grafo.
  */
 const vector<Node> &Graph::getNodes() const {
@@ -30,7 +30,7 @@ const vector<Node> &Graph::getNodes() const {
 }
 
 /**Retorna os códigos ICAO das companhias áereas que fazem o voo do nó src para o nó dest, filtrando-os de acordo com filter.
- * Complexidade Temporal: O(n), sendo n o tamanho da lista de adjacências do nó src
+ * <br>Complexidade Temporal: O(n), sendo n o tamanho da lista de adjacências do nó src
  * @param src nó de origem
  * @param dest nó de destino
  * @param filter se não vazio, filtro de companhias aéreas a incluir
@@ -45,7 +45,7 @@ vector<string> Graph::getAirlinesCodes(int src, int dest, const unordered_set<st
 }
 
 /**Retorna os nós do caminho de comprimento min até ao nó dest. Só faz sentido ser chamada depois de uma BFS que calcule as distâncias de cada nó aos nós de origem da BFS.
- * Complexidade Temporal: O(n), sendo n = min
+ * <br>Complexidade Temporal: O(n), sendo n = min
  * @param dest nó de destino do caminho
  * @param min comprimento do caminho
  * @return nós do caminho de comprimento min até ao nó dest
@@ -63,7 +63,7 @@ vector<int> Graph::getMinPath(int dest, int min) const {
 }
 
 /**Adiciona ao grafo um nó com airportCode passado pelo parâmetro homónimo (sem mais informação e sem arestas).
- * Complexidade Temporal: O(1)
+ * <br>Complexidade Temporal: O(1)
  * @param airportCode código IATA do aeroporto a atribuir ao nó
  */
 void Graph::addNode(const std::string &airportCode) {
@@ -72,7 +72,7 @@ void Graph::addNode(const std::string &airportCode) {
 }
 
 /**Adiciona ao grafo uma aresta dirigida do nó source para o nó target e com airlineCode passado pelo parâmetro homónimo.
- * Complexidade Temporal: O(1)
+ * <br>Complexidade Temporal: O(1)
  * @param source nó de origem da aresta
  * @param target nó de destino da aresta
  * @param airlineCode código ICAO da companhia aérea a atribuir à aresta
@@ -84,7 +84,7 @@ void Graph::addEdge(int source, int target, const std::string &airlineCode) {
 }
 
 /**Define todos os nós como não visitados, anulando os valores anteriores dos seus atributos.
- * Complexidade Temporal: O(n)
+ * <br>Complexidade Temporal: O(n)
  */
 void Graph::unvisitNodes() {
     for (int v = 1; v <= n; v++) {
@@ -98,10 +98,10 @@ void Graph::unvisitNodes() {
 }
 
 /**Pesquisa em Largura a partir do nó v, calculando a distância de cada nó ao nó v.
- * Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo e E o número de arestas do grafo
+ * <br>Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo e E o número de arestas do grafo
  * @param v nó de origem da Pesquisa em Largura
  */
-void Graph::bfs(int v) {
+void Graph::bfs_distance(int v) {
     unvisitNodes();
     queue<int> q;
     q.push(v);
@@ -122,7 +122,7 @@ void Graph::bfs(int v) {
 }
 
 /**Pesquisa em Largura a partir dos nós em sources até aos nós em targets (se alcançáveis), atravessando apenas as arestas cujo código está em filter (se não vazio), calculando a distância de cada nó aos nós de origem e o seu antecessor na Pesquisa em Largura.
- * Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo e E o número de arestas do grafo
+ * <br>Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo e E o número de arestas do grafo
  * @param sources nós de origem da Pesquisa em Largura
  * @param targets nós de destino da Pesquisa em Largura
  * @param filter se não vazio, filtro dos códigos das arestas a atravessar
@@ -153,21 +153,9 @@ void Graph::bfs_flights(const unordered_set<int> &sources, const unordered_set<i
         }
     }
 }
-/**Pesquisa em Profunidade a partir do nó v.
- * Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo e E o número de arestas do grafo
- * @param v nó de origem da Pesquisa em Profundidade
- */
-void Graph::dfs(int v) {
-    nodes[v].visited = true;
-    for (const Edge &edge : nodes[v].adj) {
-        int w = edge.dest;
-        if (!nodes[w].visited)
-            dfs(w);
-    }
-}
 
 /**Pesquisa em Profunidade a partir do nó v, encontrando os pontos de articulação do grafo de acordo com algoritmo semelhante ao de Tarjan.
- * Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo e E o número de arestas do grafo
+ * <br>Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo e E o número de arestas do grafo
  * @param v nó de origem da Pesquisa em Profundidade
  * @param isRoot true se o nó de origem é uma raiz da árvore de DFS, false caso contrário
  * @param index índice da Pesquisa em Profundidade para o algoritmo de Tarjan
@@ -195,7 +183,7 @@ void Graph::dfs_art(int v, bool isRoot, int &index, unordered_set<string> &point
 }
 
 /**Pesquisa em Profunidade a partir do nó v, encontrando o número de componentes fortemente conexos do grafo de acordo com algoritmo de Tarjan.
- * Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo e E o número de arestas do grafo
+ * <br>Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo e E o número de arestas do grafo
  * @param v nó de origem da Pesquisa em Profundidade
  * @param index índice da Pesquisa em Profundidade para o algoritmo de Tarjan
  * @param s pilha de nós para o algoritmo de Tarjan
@@ -225,4 +213,19 @@ void Graph::dfs_scc(int v, int &index, stack<int> &s, int &scc) {
                 break;
         }
     }
+}
+
+/**Calcula e retorna o diâmetro do grafo.
+ * <br>Complexidade Temporal: O(|V| * (2|V| + |E|)), sendo V o número de vértices do grafo flights e E o número de arestas do grafo
+ * @return diâmetro do grafo
+ */
+unsigned Graph::diameter() {
+    unsigned diametro = 0;
+    for (int v = 1; v <= n; v++) {
+        bfs_distance(v);
+        for (int u = 1; u <= n; u++)
+            if (nodes[u].visited && nodes[u].distance > diametro)
+                diametro = nodes[u].distance;
+    }
+    return diametro;
 }

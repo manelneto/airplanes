@@ -55,8 +55,9 @@ private:
     void yVoosCidades(const Airport &airport, int y) const;
     void yVoosPaises(const Airport &airport, int y) const;
     void estatisticas();
+    std::pair<Airport, int> aeroportoMaisVoos() const;
+    int componentesFortementeConexos();
     void pontosArticulacao();
-    void componentesConexos();
 };
 
 

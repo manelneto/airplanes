@@ -11,7 +11,7 @@
 using namespace std;
 
 /**Construtor sem parâmetros. Constrói um objeto de gestão com aeroportos, companhias aéreas e voos lidos de ficheiros.
- * Complexidade Temporal: O()
+ * <br>Complexidade Temporal: O()
  */
 Management::Management() {
     readAirportsFile();
@@ -20,7 +20,7 @@ Management::Management() {
 }
 
 /**Lê o ficheiro de aeroportos e cria a tabela de hash de cidades, a tabela de hash de aeroportos e os nós do grafo de voos.
- * Complexidade Temporal: O(n), sendo n o número de linhas do ficheiro de aeroportos
+ * <br>Complexidade Temporal: O(n), sendo n o número de linhas do ficheiro de aeroportos
  */
 void Management::readAirportsFile() {
     ifstream in("../files/airports.csv");
@@ -55,7 +55,7 @@ void Management::readAirportsFile() {
 }
 
 /**Lê o ficheiro de companhias aéreas e cria a tabela de hash de companhias aéreas.
- * Complexidade Temporal: O(n), sendo n o número de linhas do ficheiro de companhias aéreas
+ * <br>Complexidade Temporal: O(n), sendo n o número de linhas do ficheiro de companhias aéreas
  */
 void Management::readAirlinesFile() {
     ifstream in("../files/airlines.csv");
@@ -84,7 +84,7 @@ void Management::readAirlinesFile() {
 }
 
 /**Lê o ficheiro de voos e cria as arestas do grafo de voos.
- * Complexidade Temporal: O(n), sendo n o número de linhas do ficheiro de voos
+ * <br>Complexidade Temporal: O(n), sendo n o número de linhas do ficheiro de voos
  */
 void Management::readFlightsFile() {
     ifstream in("../files/flights.csv");
@@ -111,7 +111,7 @@ void Management::readFlightsFile() {
 }
 
 /**Calcula a distância entre dois pontos dadas as suas latitudes e longitudes.
- * Complexidade Temporal: O(1)
+ * <br>Complexidade Temporal: O(1)
  * @param lat1 latitude do ponto 1
  * @param lon1 longitude do ponto 1
  * @param lat2 latitude do ponto 2
@@ -130,7 +130,7 @@ double Management::haversine(double lat1, double lon1, double lat2, double lon2)
 }
 
 /**Verifica se str é um número inteiro não negativo.
- * Complexidade Temporal: O(n), sendo n o comprimento de str
+ * <br>Complexidade Temporal: O(n), sendo n o comprimento de str
  * @param str string a verificar
  * @return true se str é um número inteiro não negativo, false caso contrário
  */
@@ -142,7 +142,7 @@ bool Management::isInt(const string &str) {
 }
 
 /**Verifica se str é um número decimal.
- * Complexidade Temporal: O(n), sendo n o comprimento de str
+ * <br>Complexidade Temporal: O(n), sendo n o comprimento de str
  * @param str string a verificar
  * @return true se str é um número decimal, false caso contrário
  */
@@ -160,7 +160,7 @@ bool Management::isDouble(const string &str) {
 }
 
 /**Retorna str com todos os caracteres convertidos para maiúscula.
- * Complexidade Temporal: O(n), sendo n o comprimento de str
+ * <br>Complexidade Temporal: O(n), sendo n o comprimento de str
  * @param str string a copiar e converter os caracteres para maiúscula
  * @return str com todos os caracteres convertidos para maiúscula
  */
@@ -172,7 +172,7 @@ string Management::toUpper(const string &str) {
 }
 
 /**Lê o input do utilizador.
- * Complexidade Temporal: O(n), sendo n o comprimento do input do utilizador
+ * <br>Complexidade Temporal: O(n), sendo n o comprimento do input do utilizador
  * @return input do utilizador
  */
 string Management::readInput() {
@@ -183,7 +183,7 @@ string Management::readInput() {
 }
 
 /**Lê o input do utilizador, forçando a que seja um número inteiro não negativo.
- * Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
+ * <br>Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
  * @return número inteiro não negativo introduzido pelo utilizador
  */
 int Management::readInt() {
@@ -197,7 +197,7 @@ int Management::readInt() {
 }
 
 /**Lê o input do utilizador, forçando a que seja um número.
- * Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
+ * <br>Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
  * @return número introduzido pelo utilizador
  */
 double Management::readDouble() {
@@ -211,7 +211,7 @@ double Management::readDouble() {
 }
 
 /**Valida um número inteiro, isto é, verifica se n pertence ao intervalo [min, max]. Enquanto o número for inválido, tenta ler um número válido.
- * Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
+ * <br>Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
  * @param n número a validar
  * @param min limite inferior do intervalo de números válidos
  * @param max limite superior do intervalo de números válidos
@@ -226,7 +226,7 @@ int Management::validateInt(int n, int min, int max) {
 }
 
 /**Valida um número decimal, isto é, verifica se n pertence ao intervalo [min, max]. Enquanto o número for inválido, tenta ler um número válido.
- * Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
+ * <br>Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
  * @param n número a validar
  * @param min limite inferior do intervalo de números válidos
  * @param max limite superior do intervalo de números válidos
@@ -241,7 +241,7 @@ double Management::validateDouble(double n, double min, double max) {
 }
 
 /**Lê um aeroporto através do seu código IATA, forçando a que ele exista.
- * Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
+ * <br>Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
  * @return aeroporto existente introduzido pelo utilizador
  */
 Airport Management::readAirport() const {
@@ -256,7 +256,7 @@ Airport Management::readAirport() const {
 }
 
 /**Lê uma companhia aérea através do seu código ICAO, forçando a que ela exista.
- * Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
+ * <br>Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
  * @return companhia aérea existente introduzido pelo utilizador
  */
 Airline Management::readAirline() const {
@@ -271,7 +271,7 @@ Airline Management::readAirline() const {
 }
 
 /**Lê uma cidade através do seu nome e país, forçando a que ela exista.
- * Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
+ * <br>Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
  * @return cidade existente introduzido pelo utilizador
  */
 City Management::readCity() const {
@@ -288,7 +288,7 @@ City Management::readCity() const {
 }
 
 /**Lê uma localização através da sua latitude e longitude, forçando a que ela seja válida.
- * Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
+ * <br>Complexidade Temporal: O(n), sendo n a posição do primeiro input válido introduzido pelo utilizador
  * @return localização (par latitude-longitude) válida introduzida pelo utilizador
  */
 pair<double, double> Management::readLocation() {
@@ -302,7 +302,7 @@ pair<double, double> Management::readLocation() {
 }
 
 /**Retorna os aeroportos de uma cidade.
- * Complexidade Temporal: O(n), sendo n o tamanho de airports
+ * <br>Complexidade Temporal: O(n), sendo n o tamanho de airports
  * @param city cidade
  * @return aeroportos da cidade
  */
@@ -315,7 +315,7 @@ list<Airport> Management::getAirports(const City &city) const {
 }
 
 /**Retorna os aeroportos a menos de range quilómetros de uma localização.
- * Complexidade Temporal: O(n), sendo n o tamanho de airports
+ * <br>Complexidade Temporal: O(n), sendo n o tamanho de airports
  * @param latitude latitude da localização
  * @param longitude longitude da localização
  * @param range distância máxima da localização para aceitar aeroporto
@@ -330,7 +330,7 @@ list<Airport> Management::getAirports(const double latitude, const double longit
 }
 
 /**Retorna os aeroportos cuja distância calculada pertence ao intervalo ]0, y].
- * Complexidade Temporal: O(n), sendo n o tamanho de nós do grafo flights
+ * <br>Complexidade Temporal: O(n), sendo n o tamanho de nós do grafo flights
  * @param y distância máxima para aceitar aeroporto
  * @return aeroportos cuja distância calculada pertence ao intervalo ]0, y]
  */
@@ -343,7 +343,7 @@ list<Airport> Management::getAirports(const int y) const {
 }
 
 /**Retorna os números dos aeroportos em airports.
- * Complexidade Temporal: O(n), sendo n o tamanho de airports
+ * <br>Complexidade Temporal: O(n), sendo n o tamanho de airports
  * @param airports aeroportos
  * @return números dos aeroportos em airports
  */
@@ -355,7 +355,7 @@ unordered_set<int> Management::getNumbers(const list<Airport> &airports) {
 }
 
 /**Retorna os códigos ICAO das companhias aéreas em airlines.
- * Complexidade Temporal: O(n), sendo n o tamanho de airlines
+ * <br>Complexidade Temporal: O(n), sendo n o tamanho de airlines
  * @return códigos ICAO das companhias aéreas em airlines
  */
 unordered_set<string> Management::getAirlinesCodes() const {
@@ -366,13 +366,13 @@ unordered_set<string> Management::getAirlinesCodes() const {
 }
 
 /**Apresenta o menu principal e permite selecionar uma das opções apresentadas.
- * Complexidade Temporal: amplamente variável de acordo com o input
+ * <br>Complexidade Temporal: amplamente variável de acordo com o input
  * @return 0 se o utilizador pretender sair, 1 caso contrário
  */
 int Management::menu() {
-    cout << "\nMenu Principal:\n1 - Melhor maneira de voar entre dois locais\n2 - Informações sobre um aeroporto\n3 - Calcular estatísticas globais da rede\n4 - Calcular os pontos de articulação existentes na rede\n5 - Calcular o número de componentes conexos e fortemente conexos da rede\n0 - Sair\nOpção: ";
+    cout << "\nMenu Principal:\n1 - Melhor maneira de voar entre dois locais\n2 - Informações sobre um aeroporto\n3 - Calcular estatísticas globais da rede\n4 - Calcular os pontos de articulação existentes na rede\n0 - Sair\nOpção: ";
     int option = readInt();
-    option = validateInt(option, 0, 5);
+    option = validateInt(option, 0, 4);
     if (option == 1)
         melhorVoo();
     else if (option == 2)
@@ -381,15 +381,13 @@ int Management::menu() {
         estatisticas();
     else if (option == 4)
         pontosArticulacao();
-    else if (option == 5)
-        componentesConexos();
     else
         return 0;
     return 1;
 }
 
 /**Lê um local (aeroporto, cidade ou localização) e retorna os aeroportos desse local.
- * Complexidade Temporal: O(n), sendo n o número de aeroportos do local lido
+ * <br>Complexidade Temporal: O(n), sendo n o número de aeroportos do local lido
  * @return aeroportos do local lido
  */
 list<Airport> Management::lerLocal() const {
@@ -410,8 +408,8 @@ list<Airport> Management::lerLocal() const {
     return res;
 }
 
-/**Lê uma rede de voos (códigos ICAO das companhias áereas a incluir ou a excluir) e retorna os códigos ICAO das companhias aéreas dessa rede de voos.
- * Complexidade Temporal: O(n), sendo n o número de companhias aéreas da rede de voos lida
+/**Lê uma rede de voos (códigos ICAO das companhias aéreas a incluir ou a excluir) e retorna os códigos ICAO das companhias aéreas dessa rede de voos.
+ * <br>Complexidade Temporal: O(n), sendo n o número de companhias aéreas da rede de voos lida
  * @return códigos ICAO das companhias aéreas da rede de voos lida
  */
 unordered_set<string> Management::lerRede() const {
@@ -437,7 +435,7 @@ unordered_set<string> Management::lerRede() const {
 }
 
 /**Determina a melhor maneira de voar entre entre dois locais lidos do utilizador (de um para o outro), através de uma rede de voos lida do utilizador.
- * Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo flights e E o número de arestas do grafo flights
+ * <br>Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo flights e E o número de arestas do grafo flights
  */
 void Management::melhorVoo() {
     cout << "Local de Origem";
@@ -466,7 +464,7 @@ void Management::melhorVoo() {
 }
 
 /**Imprime um voo: caminho de nós/aeroportos através de arestas/companhias aéreas.
- * Complexidade Temporal: O(n * m), sendo n o tamanho de path e m o maior tamanho de entre as companhias aéreas possíveis (e filtradas) para cada voo
+ * <br>Complexidade Temporal: O(n * m), sendo n o tamanho de path e m o maior tamanho de entre as companhias aéreas possíveis (e filtradas) para cada voo
  * @param path caminho de nós/aeroportos a imprimir
  * @param filter filtro de companhias aéreas a incluir
  */
@@ -489,7 +487,7 @@ void Management::imprimirVoo(const vector<int> &path, const unordered_set<string
 }
 
 /**Apresenta o menu de informações sobre um aeroporto lido e permite selecionar uma das opções apresentadas.
- * Complexidade Temporal: amplamente variável de acordo com o input
+ * <br>Complexidade Temporal: amplamente variável de acordo com o input
  */
 void Management::informacoes() {
     Airport airport = readAirport();
@@ -509,7 +507,7 @@ void Management::informacoes() {
 }
 
 /**Determina e imprime quantos e quais voos existem a partir do aeroporto em análise.
- * Complexidade Temporal: O(n), sendo n o tamanho da lista de adjacências do nó do grafo flights correspondente ao aeroporto em análise
+ * <br>Complexidade Temporal: O(n), sendo n o tamanho da lista de adjacências do nó do grafo flights correspondente ao aeroporto em análise
  * @param airport aeroporto em análise
  */
 void Management::partidas(const Airport &airport) const {
@@ -532,7 +530,7 @@ void Management::partidas(const Airport &airport) const {
 }
 
 /**Determina e imprime quantas e quais companhias aéreas partem do aeroporto em análise.
- * Complexidade Temporal: O(n), sendo n o tamanho da lista de adjacências do nó do grafo flights correspondente ao aeroporto em análise
+ * <br>Complexidade Temporal: O(n), sendo n o tamanho da lista de adjacências do nó do grafo flights correspondente ao aeroporto em análise
  * @param airport aeroporto em análise
  */
 void Management::companhiasAereas(const Airport &airport) const {
@@ -556,7 +554,7 @@ void Management::companhiasAereas(const Airport &airport) const {
 }
 
 /**Determina e imprime quantos e quais destinos (cidades) são atingíveis a partir do aeroporto em análise.
- * Complexidade Temporal: O(n), sendo n o tamanho da lista de adjacências do nó do grafo flights correspondente ao aeroporto em análise
+ * <br>Complexidade Temporal: O(n), sendo n o tamanho da lista de adjacências do nó do grafo flights correspondente ao aeroporto em análise
  * @param airport aeroporto em análise
  */
 void Management::destinos(const Airport &airport) const {
@@ -584,7 +582,7 @@ void Management::destinos(const Airport &airport) const {
 }
 
 /**Determina e imprime quantos e quais países são atingíveis a partir do aeroporto em análise.
- * Complexidade Temporal: O(n), sendo n o tamanho da lista de adjacências do nó do grafo flights correspondente ao aeroporto em análise
+ * <br>Complexidade Temporal: O(n), sendo n o tamanho da lista de adjacências do nó do grafo flights correspondente ao aeroporto em análise
  * @param airport aeroporto em análise
  */
 void Management::paises(const Airport &airport) const {
@@ -607,7 +605,7 @@ void Management::paises(const Airport &airport) const {
 }
 
 /**Determina as distâncias de todos os aeroportos ao aeroporto em análise, lê um valor Y do utilizador para utilização futura e permite selecionar uma das opções apresentadas.
- * Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo flights e E o número de arestas do grafo flights
+ * <br>Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo flights e E o número de arestas do grafo flights
  * @param airport aeroporto em análise
  */
 void Management::yVoos(const Airport &airport) {
@@ -626,7 +624,7 @@ void Management::yVoos(const Airport &airport) {
 }
 
 /**Determina e imprime quantos e quais aeroportos são atingíveis a partir do aeroporto de partida usando um máximo de Y voos.
- * Complexidade Temporal: O(n), sendo n o tamanho de nós do grafo flights
+ * <br>Complexidade Temporal: O(n), sendo n o tamanho de nós do grafo flights
  * @param airport aeroporto de partida
  * @param y número máximo de voos para aceitar aeroporto
  */
@@ -651,7 +649,7 @@ void Management::yVoosAeroportos(const Airport &airport, const int y) const {
 }
 
 /**Determina e imprime quantas e quais cidades são atingíveis a partir do aeroporto de partida usando um máximo de Y voos.
- * Complexidade Temporal: O(n), sendo n o tamanho de nós do grafo flights
+ * <br>Complexidade Temporal: O(n), sendo n o tamanho de nós do grafo flights
  * @param airport aeroporto de partida
  * @param y número máximo de voos para aceitar aeroporto
  */
@@ -679,7 +677,7 @@ void Management::yVoosCidades(const Airport &airport, const int y) const {
 }
 
 /**Determina e imprime quantos e quais países são atingíveis a partir do aeroporto em análise usando um máximo de Y voos.
- * Complexidade Temporal: O(n), sendo n o tamanho de nós do grafo flights
+ * <br>Complexidade Temporal: O(n), sendo n o tamanho de nós do grafo flights
  * @param airport aeroporto de partida
  * @param y número máximo de voos para aceitar aeroporto
  */
@@ -703,25 +701,32 @@ void Management::yVoosPaises(const Airport &airport, const int y) const {
         cout << i++ << ". " << pais << endl;
 }
 
-/**Cacula e imprime estatísticas globais da rede de voos: número de aeroportos, número de voos, número de companhias áereas, diâmetro e aeroporto com mais voos.
- * Complexidade Temporal: O(|V| * (2|V| + |E|)), sendo V o número de vértices do grafo flights e E o número de arestas do grafo flights
+/**Cacula e imprime estatísticas globais da rede de voos: número de aeroportos, número de voos, número de companhias aéreas, diâmetro, aeroporto com mais voos, máximo de voos por aeroporto, média de voos por aeroporto (grau médio) e número de componentes fortemente conexos.
+ * <br>Complexidade Temporal: O(|V| * (2|V| + |E|)), sendo V o número de vértices do grafo flights e E o número de arestas do grafo flights
  */
 void Management::estatisticas() {
-    unsigned nAeroportos = airports.size();
+    cout << "\nAeroportos: " << airports.size();
     unsigned nVoos = 0;
     for (const Node &node : flights.getNodes())
         nVoos += node.adj.size();
-    unsigned nCompanhiasAereas = airlines.size();
-    unsigned diametro = 0;
-    cout << "A calcular o diâmetro..." << endl;
-    for (int v = 1; v <= flights.getN(); v++) {
-        flights.bfs(v);
-        for (int u = 1; u <= flights.getN(); u++)
-            if (flights.getNodes()[u].visited && flights.getNodes()[u].distance > diametro)
-                diametro = flights.getNodes()[u].distance;
-    }
+    cout << "\nVoos: " << nVoos;
+    cout << "\nCompanhias Aéreas: " << airlines.size();
+    cout << "\nDiâmetro: " << flights.diameter();
+    pair<Airport, int> pair = aeroportoMaisVoos();
+    cout << "\nAeroporto com mais voos: ";
+    pair.first.print();
+    cout << "\nMáximo de voos por aeroporto: " << pair.second;
+    cout << "\nMédia de voos por aeroporto (grau médio): " << 1.0 * nVoos/airports.size();
+    cout << "\nComponentes Fortemente Conexos: " << componentesFortementeConexos() << endl;
+}
+
+/**Calcula e retorna o aeroporto com mais voos e o número de voos desse aeroporto.
+ * <br>Complexidade Temporal: O(|V|), sendo V o número de vértices do grafo flights
+ * @return aeroporto com mais voos e número de voos desse aeroporto
+ */
+pair<Airport, int> Management::aeroportoMaisVoos() const {
     string airportCode;
-    int max = 0;
+    unsigned max = 0;
     for (int v = 1; v <= flights.getN(); v++) {
         Node node = flights.getNodes()[v];
         if (node.adj.size() > max) {
@@ -729,18 +734,27 @@ void Management::estatisticas() {
             max = node.adj.size();
         }
     }
-    Airport airport = *airports.find(Airport(airportCode));
-    cout << "\nNúmero de Aeroportos: " << nAeroportos << endl;
-    cout << "Número de Voos: " << nVoos << endl;
-    cout << "Número de Companhias Aéreas: " << nCompanhiasAereas << endl;
-    cout << "Diâmetro: " << diametro << endl;
-    cout << "Aeroporto com mais voos: ";
-    airport.print();
-    cout << " - " << max << " voos" << endl;
+    Airport airport = *airports.find(airportCode);
+    return make_pair(airport, max);
+}
+
+/**Calcula e retorna o número de componentes fortemente conexos da rede de voos.
+ * <br>Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo flights e E o número de arestas do grafo flights
+ * @return número de componentes fortemente conexos da rede de voos
+ */
+int Management::componentesFortementeConexos() {
+    int scc = 0;
+    int index = 1;
+    flights.unvisitNodes();
+    stack<int> s;
+    for (int v = 1; v <= flights.getN(); v++)
+        if (flights.getNodes()[v].num == 0)
+            flights.dfs_scc(v, index, s, scc);
+    return scc;
 }
 
 /**Calcula e imprime os pontos de articulação existentes na rede de voos.
- * Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo flights e E o número de arestas do grafo flights
+ * <br>Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo flights e E o número de arestas do grafo flights
  */
 void Management::pontosArticulacao() {
     int index = 1;
@@ -757,26 +771,4 @@ void Management::pontosArticulacao() {
         airports.find(Airport(point))->print();
         cout << endl;
     }
-}
-
-/**Calcula e imprime o número de componentes conexos e fortemente conexos da rede de voos.
- * Complexidade Temporal: O(|V| + |E|), sendo V o número de vértices do grafo flights e E o número de arestas do grafo flights
- */
-void Management::componentesConexos() {
-    int cc = 0;
-    flights.unvisitNodes();
-    for (int v = 1; v <= flights.getN(); v++)
-        if (!flights.getNodes()[v].visited) {
-            cc++;
-            flights.dfs(v);
-        }
-    cout << "A rede de voos tem " << cc << " componentes conexos." << endl;
-    int scc = 0;
-    int index = 1;
-    flights.unvisitNodes();
-    stack<int> s;
-    for (int v = 1; v <= flights.getN(); v++)
-        if (flights.getNodes()[v].num == 0)
-            flights.dfs_scc(v, index, s, scc);
-    cout << "A rede de voos tem " << scc << " componentes fortemente conexos." << endl;
 }
