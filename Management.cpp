@@ -401,7 +401,7 @@ list<Airport> Management::lerLocal() const {
         res = getAirports(readCity());
     else {
         pair<double, double> location = readLocation();
-        cout << "Raio: " << endl;
+        cout << "Raio: ";
         double range = readDouble();
         res = getAirports(location.first, location.second, range);
     }
