@@ -1,12 +1,12 @@
-<map id="C:/Users/manue/CLionProjects/airplanes/Management.h" name="C:/Users/manue/CLionProjects/airplanes/Management.h">
-<area shape="rect" id="node1" title=" " alt="" coords="35,5,236,45"/>
-<area shape="rect" id="node2" href="$_airport_8h.html" title=" " alt="" coords="5,93,76,119"/>
-<area shape="rect" id="node5" href="$_airline_8h.html" title=" " alt="" coords="101,93,170,119"/>
-<area shape="rect" id="node6" href="$_graph_8h.html" title=" " alt="" coords="235,93,303,119"/>
-<area shape="rect" id="node3" href="$_city_8h.html" title=" " alt="" coords="13,167,69,192"/>
-<area shape="rect" id="node4" title=" " alt="" coords="79,240,133,265"/>
-<area shape="rect" id="node7" title=" " alt="" coords="195,167,233,192"/>
-<area shape="rect" id="node8" title=" " alt="" coords="258,167,362,192"/>
-<area shape="rect" id="node9" title=" " alt="" coords="386,167,442,192"/>
-<area shape="rect" id="node10" title=" " alt="" coords="467,167,521,192"/>
+<map id="Management.h" name="Management.h">
+<area shape="rect" id="node1" title=" " alt="" coords="81,5,189,31"/>
+<area shape="rect" id="node2" href="$_airport_8h.html" title=" " alt="" coords="5,79,76,104"/>
+<area shape="rect" id="node5" href="$_airline_8h.html" title=" " alt="" coords="101,79,170,104"/>
+<area shape="rect" id="node6" href="$_graph_8h.html" title=" " alt="" coords="235,79,303,104"/>
+<area shape="rect" id="node3" href="$_city_8h.html" title=" " alt="" coords="13,152,69,177"/>
+<area shape="rect" id="node4" title=" " alt="" coords="79,225,133,251"/>
+<area shape="rect" id="node7" title=" " alt="" coords="195,152,233,177"/>
+<area shape="rect" id="node8" title=" " alt="" coords="258,152,362,177"/>
+<area shape="rect" id="node9" title=" " alt="" coords="386,152,442,177"/>
+<area shape="rect" id="node10" title=" " alt="" coords="467,152,521,177"/>
 </map>

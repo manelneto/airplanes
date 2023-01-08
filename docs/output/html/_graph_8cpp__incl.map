@@ -1,10 +1,10 @@
-<map id="C:/Users/manue/CLionProjects/airplanes/Graph.cpp" name="C:/Users/manue/CLionProjects/airplanes/Graph.cpp">
-<area shape="rect" id="node1" title=" " alt="" coords="141,5,343,45"/>
-<area shape="rect" id="node2" href="$_graph_8h.html" title=" " alt="" coords="165,93,233,119"/>
-<area shape="rect" id="node8" title=" " alt="" coords="257,93,315,119"/>
-<area shape="rect" id="node3" title=" " alt="" coords="5,167,60,192"/>
-<area shape="rect" id="node4" title=" " alt="" coords="84,167,123,192"/>
-<area shape="rect" id="node5" title=" " alt="" coords="147,167,251,192"/>
-<area shape="rect" id="node6" title=" " alt="" coords="275,167,331,192"/>
-<area shape="rect" id="node7" title=" " alt="" coords="356,167,411,192"/>
+<map id="Graph.cpp" name="Graph.cpp">
+<area shape="rect" id="node1" title=" " alt="" coords="201,5,283,31"/>
+<area shape="rect" id="node2" href="$_graph_8h.html" title=" " alt="" coords="165,79,233,104"/>
+<area shape="rect" id="node8" title=" " alt="" coords="257,79,315,104"/>
+<area shape="rect" id="node3" title=" " alt="" coords="5,152,60,177"/>
+<area shape="rect" id="node4" title=" " alt="" coords="84,152,123,177"/>
+<area shape="rect" id="node5" title=" " alt="" coords="147,152,251,177"/>
+<area shape="rect" id="node6" title=" " alt="" coords="275,152,331,177"/>
+<area shape="rect" id="node7" title=" " alt="" coords="356,152,411,177"/>
 </map>
