@@ -23,6 +23,11 @@ private:
 };
 
 struct cityHash {
+    /**Função de dispersão para a tabela de dispersão de cities.
+     * <br>Complexidade Temporal: O(n), sendo n a soma dos comprimentos do nome e do país
+     * @param city cidade a mapear
+     * @return valor da hash para a cidade a mapear
+     */
     int operator()(const City &city) const {
         const std::string& str = city.getCity() + city.getCountry();
         int v = 0;
@@ -31,6 +36,12 @@ struct cityHash {
         return v;
     }
 
+    /**Função de igualdade para a tabela de dispersão de cities.
+     * <br>Complexidade Temporal: O(n), sendo n o maior comprimento entre o nome e o país das cidades
+     * @param city1 cidade 1
+     * @param city2 cidade 2
+     * @return true se as cidades são iguais, false caso contrário
+     */
     bool operator()(const City &city1, const City &city2) const {
         return city1 == city2;
     }

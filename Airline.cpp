@@ -31,7 +31,7 @@ const std::string &Airline::getCode() const {
 }
 
 /**Compara a companhia aérea e rhs quanto ao código ICAO.
- * <br>Complexidade Temporal: O(n), sendo n o maior tamanho entre os códigos ICAO
+ * <br>Complexidade Temporal: O(n), sendo n o maior comprimento entre os códigos ICAO
  * @param rhs companhia aérea com a qual comparar
  * @return true se a companhia áerea e rhs têm igual código ICAO, false caso contrário
  */

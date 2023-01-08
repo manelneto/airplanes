@@ -24,6 +24,11 @@ private:
 };
 
 struct airlineHash {
+    /**Função de dispersão para a tabela de dispersão de airlines.
+     * <br>Complexidade Temporal: O(n), sendo n o comprimento do código ICAO
+     * @param airline companhia aérea a mapear
+     * @return valor da hash para a companhia aérea a mapear
+     */
     int operator()(const Airline &airline) const {
         const std::string& str = airline.getCode();
         int v = 0;
@@ -32,6 +37,12 @@ struct airlineHash {
         return v;
     }
 
+    /**Função de igualdade para a tabela de dispersão de airlines.
+     * <br>Complexidade Temporal: O(n), sendo n sendo n o maior comprimento entre os códigos ICAO
+     * @param airline1 companhia aérea 1
+     * @param airline2 companhia aérea 2
+     * @return true se as companhias aéreas são iguais, false caso contrário
+     */
     bool operator()(const Airline &airline1, const Airline &airline2) const {
         return airline1 == airline2;
     }

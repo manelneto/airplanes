@@ -36,7 +36,7 @@ const std::string &City::getCountry() const {
 }
 
 /**Compara a cidade e rhs quanto ao nome e ao país.
- * <br>Complexidade Temporal: O(n), sendo n o maior tamanho entre o nome e o país da cidade e de rhs
+ * <br>Complexidade Temporal: O(n), sendo n o maior comprimento entre o nome e o país da cidade e de rhs
  * @param rhs cidade com a qual comparar
  * @return true se a cidade e rhs têm igual nome e país, false caso contrário
  */

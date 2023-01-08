@@ -1,0 +1,7 @@
+<map id="Airport" name="Airport">
+<area shape="rect" id="node1" title=" " alt="" coords="142,328,258,500"/>
+<area shape="rect" id="node2" title=" " alt="" coords="5,5,64,45"/>
+<area shape="rect" id="node3" href="$class_city.html" title=" " alt="" coords="75,123,181,251"/>
+<area shape="rect" id="node4" title=" " alt="" coords="205,167,269,207"/>
+<area shape="rect" id="node5" title=" " alt="" coords="299,167,339,207"/>
+</map>

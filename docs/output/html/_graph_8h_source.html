@@ -1,0 +1,161 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="pt">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=11"/>
+<meta name="generator" content="Doxygen 1.9.5"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Transportes Aéreos: Código-Fonte de C:/Users/manue/CLionProjects/airplanes/Graph.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/searchdata.js"></script>
+<script type="text/javascript" src="search/search.js"></script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr id="projectrow">
+  <td id="projectalign">
+   <div id="projectname">Transportes Aéreos<span id="projectnumber">&#160;AED</span>
+   </div>
+   <div id="projectbrief">Trabalho Prático 2</div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.9.5 -->
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+var searchBox = new SearchBox("searchBox", "search/",'.html');
+/* @license-end */
+</script>
+<script type="text/javascript" src="menudata.js"></script>
+<script type="text/javascript" src="menu.js"></script>
+<script type="text/javascript">
+/* @license magnet:?xt=urn:btih:d3d9a9a6595521f9666a5e94cc830dab83b65699&amp;dn=expat.txt MIT */
+$(function() {
+  initMenu('',true,false,'search.php','Localizar');
+  $(document).ready(function() { init_search(); });
+});
+/* @license-end */
+</script>
+<div id="main-nav"></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+</div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<div id="MSearchResults">
+<div class="SRPage">
+<div id="SRIndex">
+<div id="SRResults"></div>
+<div class="SRStatus" id="Loading">Carregando...</div>
+<div class="SRStatus" id="Searching">Procurando...</div>
+<div class="SRStatus" id="NoMatches">Nenhuma entrada encontrada</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="header">
+  <div class="headertitle"><div class="title">C:/Users/manue/CLionProjects/airplanes/Graph.h</div></div>
+</div><!--header-->
+<div class="contents">
+<a href="_graph_8h.html">Ir para a documentação deste ficheiro.</a><div class="fragment"><div class="line"><a id="l00001" name="l00001"></a><span class="lineno">    1</span><span class="comment">//</span></div>
+<div class="line"><a id="l00002" name="l00002"></a><span class="lineno">    2</span><span class="comment">// Created by manue on 30/12/2022.</span></div>
+<div class="line"><a id="l00003" name="l00003"></a><span class="lineno">    3</span><span class="comment">//</span></div>
+<div class="line"><a id="l00004" name="l00004"></a><span class="lineno">    4</span> </div>
+<div class="line"><a id="l00005" name="l00005"></a><span class="lineno">    5</span><span class="preprocessor">#ifndef AIRPLANES_GRAPH_H</span></div>
+<div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#define AIRPLANES_GRAPH_H</span></div>
+<div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
+<div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span> </div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &lt;string&gt;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &lt;list&gt;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &lt;unordered_set&gt;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &lt;vector&gt;</span></div>
+<div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span><span class="preprocessor">#include &lt;stack&gt;</span></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span> </div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno"><a class="line" href="struct_edge.html">   15</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_edge.html">Edge</a> {</div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno"><a class="line" href="struct_edge.html#ad7df434ff7710e69f28bb31e91a35f82">   16</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_edge.html#ad7df434ff7710e69f28bb31e91a35f82">dest</a>;</div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno"><a class="line" href="struct_edge.html#aca2560fff0b32dfa72cf0fa0eed0a1bd">   17</a></span>    std::string <a class="code hl_variable" href="struct_edge.html#aca2560fff0b32dfa72cf0fa0eed0a1bd">airlineCode</a>;</div>
+<div class="line"><a id="l00018" name="l00018"></a><span class="lineno">   18</span>};</div>
+<div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span> </div>
+<div class="line"><a id="l00020" name="l00020"></a><span class="lineno"><a class="line" href="struct_node.html">   20</a></span><span class="keyword">struct </span><a class="code hl_struct" href="struct_node.html">Node</a> {</div>
+<div class="line"><a id="l00021" name="l00021"></a><span class="lineno"><a class="line" href="struct_node.html#abe67c194d29b4f7b73058f2edf810b2e">   21</a></span>    std::string <a class="code hl_variable" href="struct_node.html#abe67c194d29b4f7b73058f2edf810b2e">airportCode</a>;</div>
+<div class="line"><a id="l00022" name="l00022"></a><span class="lineno"><a class="line" href="struct_node.html#a21710cf107065e5d1b3902a429f4949e">   22</a></span>    std::list&lt;Edge&gt; <a class="code hl_variable" href="struct_node.html#a21710cf107065e5d1b3902a429f4949e">adj</a>;</div>
+<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="struct_node.html#aa1bdec4e775fc578632e6a2dced9e251">   23</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_node.html#aa1bdec4e775fc578632e6a2dced9e251">visited</a>;</div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno"><a class="line" href="struct_node.html#a420f57dad14f36839b73b16454f89608">   24</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_node.html#a420f57dad14f36839b73b16454f89608">distance</a>;</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno"><a class="line" href="struct_node.html#a522918bb40ece082ac9829afc9289b05">   25</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_node.html#a522918bb40ece082ac9829afc9289b05">previous</a>;</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="struct_node.html#a5779685e4a9e62efa64145eb95bae0ce">   26</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_node.html#a5779685e4a9e62efa64145eb95bae0ce">num</a>;</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno"><a class="line" href="struct_node.html#a94e0b7f69fa2d2b0058b926204f8068a">   27</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="struct_node.html#a94e0b7f69fa2d2b0058b926204f8068a">low</a>;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="struct_node.html#aff140ff2d6025617836459da4b327d1c">   28</a></span>    <span class="keywordtype">bool</span> <a class="code hl_variable" href="struct_node.html#aff140ff2d6025617836459da4b327d1c">inStack</a>;</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>};</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno"><a class="line" href="class_graph.html">   31</a></span><span class="keyword">class </span><a class="code hl_class" href="class_graph.html">Graph</a> {</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <a class="code hl_class" href="class_graph.html">Graph</a>(<span class="keywordtype">int</span> <a class="code hl_variable" href="class_graph.html#a81a76a428e630453ef019a15b9092967">n</a>);</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">int</span> <a class="code hl_function" href="class_graph.html#a87f86a985da5551dca0e85b8426b22d9">getN</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span>    <span class="keyword">const</span> std::vector&lt;Node&gt; &amp;<a class="code hl_function" href="class_graph.html#a39df4260bd4eea2c76ea7c7d1a2b51c4">getNodes</a>() <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    std::vector&lt;std::string&gt; <a class="code hl_function" href="class_graph.html#aa135928f9732e47be6286598744ee004">getAirlinesCodes</a>(<span class="keywordtype">int</span> src, <span class="keywordtype">int</span> dest, <span class="keyword">const</span> std::unordered_set&lt;std::string&gt; &amp;filter = {}) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    std::vector&lt;int&gt; <a class="code hl_function" href="class_graph.html#ad7cbe9a327bf5dfaf0f1fab6ad902fe3">getMinPath</a>(<span class="keywordtype">int</span> dest, <span class="keywordtype">int</span> min) <span class="keyword">const</span>;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_graph.html#a9891a60442dc0fd7ef8a57f56b3c5613">addNode</a>(<span class="keyword">const</span> std::string &amp;airportCode);</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_graph.html#a5216c4aa5ace7a56cb638a659beb49b3">addEdge</a>(<span class="keywordtype">int</span> source, <span class="keywordtype">int</span> target, <span class="keyword">const</span> std::string &amp;airlineCode);</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_graph.html#a1349001cb6f6f5a0e0352d47edf62c21">unvisitNodes</a>();</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_graph.html#a7fe04535456d14e1b93f2d9a18c67c19">bfs_distance</a>(<span class="keywordtype">int</span> v);</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_graph.html#a60bb6e121282fe53ea036c24a1fb6d69">bfs_flights</a>(<span class="keyword">const</span> std::unordered_set&lt;int&gt; &amp;sources, <span class="keyword">const</span> std::unordered_set&lt;int&gt; &amp;targets = {}, <span class="keyword">const</span> std::unordered_set&lt;std::string&gt; &amp;filter = {});</div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_graph.html#a879736541abb41d34aed51c3b4d5fde5">dfs_art</a>(<span class="keywordtype">int</span> v, <span class="keywordtype">bool</span> isRoot, <span class="keywordtype">int</span> &amp;index, std::unordered_set&lt;std::string&gt; &amp;points);</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">void</span> <a class="code hl_function" href="class_graph.html#a7f7f7c3434243f8b7f59b0258870a3ff">dfs_scc</a>(<span class="keywordtype">int</span> v, <span class="keywordtype">int</span> &amp;index, std::stack&lt;int&gt; &amp;s, <span class="keywordtype">int</span> &amp;scc);</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keywordtype">unsigned</span> <a class="code hl_function" href="class_graph.html#a9dc20c898262dea494c7b49f7c51ebf1">diameter</a>();</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno"><a class="line" href="class_graph.html#a81a76a428e630453ef019a15b9092967">   47</a></span>    <span class="keywordtype">int</span> <a class="code hl_variable" href="class_graph.html#a81a76a428e630453ef019a15b9092967">n</a>;</div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="class_graph.html#a1aee641ef193a893ab2833d8874ad2f5">   48</a></span>    std::vector&lt;Node&gt; <a class="code hl_variable" href="class_graph.html#a1aee641ef193a893ab2833d8874ad2f5">nodes</a>;</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>};</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span> </div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span> </div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span><span class="preprocessor">#endif </span><span class="comment">//AIRPLANES_GRAPH_H</span></div>
+<div class="ttc" id="aclass_graph_html"><div class="ttname"><a href="class_graph.html">Graph</a></div><div class="ttdef"><b>Definition:</b> Graph.h:31</div></div>
+<div class="ttc" id="aclass_graph_html_a1349001cb6f6f5a0e0352d47edf62c21"><div class="ttname"><a href="class_graph.html#a1349001cb6f6f5a0e0352d47edf62c21">Graph::unvisitNodes</a></div><div class="ttdeci">void unvisitNodes()</div><div class="ttdef"><b>Definition:</b> Graph.cpp:89</div></div>
+<div class="ttc" id="aclass_graph_html_a1aee641ef193a893ab2833d8874ad2f5"><div class="ttname"><a href="class_graph.html#a1aee641ef193a893ab2833d8874ad2f5">Graph::nodes</a></div><div class="ttdeci">std::vector&lt; Node &gt; nodes</div><div class="ttdef"><b>Definition:</b> Graph.h:48</div></div>
+<div class="ttc" id="aclass_graph_html_a39df4260bd4eea2c76ea7c7d1a2b51c4"><div class="ttname"><a href="class_graph.html#a39df4260bd4eea2c76ea7c7d1a2b51c4">Graph::getNodes</a></div><div class="ttdeci">const std::vector&lt; Node &gt; &amp; getNodes() const</div><div class="ttdef"><b>Definition:</b> Graph.cpp:28</div></div>
+<div class="ttc" id="aclass_graph_html_a5216c4aa5ace7a56cb638a659beb49b3"><div class="ttname"><a href="class_graph.html#a5216c4aa5ace7a56cb638a659beb49b3">Graph::addEdge</a></div><div class="ttdeci">void addEdge(int source, int target, const std::string &amp;airlineCode)</div><div class="ttdef"><b>Definition:</b> Graph.cpp:80</div></div>
+<div class="ttc" id="aclass_graph_html_a60bb6e121282fe53ea036c24a1fb6d69"><div class="ttname"><a href="class_graph.html#a60bb6e121282fe53ea036c24a1fb6d69">Graph::bfs_flights</a></div><div class="ttdeci">void bfs_flights(const std::unordered_set&lt; int &gt; &amp;sources, const std::unordered_set&lt; int &gt; &amp;targets={}, const std::unordered_set&lt; std::string &gt; &amp;filter={})</div><div class="ttdef"><b>Definition:</b> Graph.cpp:130</div></div>
+<div class="ttc" id="aclass_graph_html_a7f7f7c3434243f8b7f59b0258870a3ff"><div class="ttname"><a href="class_graph.html#a7f7f7c3434243f8b7f59b0258870a3ff">Graph::dfs_scc</a></div><div class="ttdeci">void dfs_scc(int v, int &amp;index, std::stack&lt; int &gt; &amp;s, int &amp;scc)</div><div class="ttdef"><b>Definition:</b> Graph.cpp:192</div></div>
+<div class="ttc" id="aclass_graph_html_a7fe04535456d14e1b93f2d9a18c67c19"><div class="ttname"><a href="class_graph.html#a7fe04535456d14e1b93f2d9a18c67c19">Graph::bfs_distance</a></div><div class="ttdeci">void bfs_distance(int v)</div><div class="ttdef"><b>Definition:</b> Graph.cpp:104</div></div>
+<div class="ttc" id="aclass_graph_html_a81a76a428e630453ef019a15b9092967"><div class="ttname"><a href="class_graph.html#a81a76a428e630453ef019a15b9092967">Graph::n</a></div><div class="ttdeci">int n</div><div class="ttdef"><b>Definition:</b> Graph.h:47</div></div>
+<div class="ttc" id="aclass_graph_html_a879736541abb41d34aed51c3b4d5fde5"><div class="ttname"><a href="class_graph.html#a879736541abb41d34aed51c3b4d5fde5">Graph::dfs_art</a></div><div class="ttdeci">void dfs_art(int v, bool isRoot, int &amp;index, std::unordered_set&lt; std::string &gt; &amp;points)</div><div class="ttdef"><b>Definition:</b> Graph.cpp:164</div></div>
+<div class="ttc" id="aclass_graph_html_a87f86a985da5551dca0e85b8426b22d9"><div class="ttname"><a href="class_graph.html#a87f86a985da5551dca0e85b8426b22d9">Graph::getN</a></div><div class="ttdeci">int getN() const</div><div class="ttdef"><b>Definition:</b> Graph.cpp:20</div></div>
+<div class="ttc" id="aclass_graph_html_a9891a60442dc0fd7ef8a57f56b3c5613"><div class="ttname"><a href="class_graph.html#a9891a60442dc0fd7ef8a57f56b3c5613">Graph::addNode</a></div><div class="ttdeci">void addNode(const std::string &amp;airportCode)</div><div class="ttdef"><b>Definition:</b> Graph.cpp:69</div></div>
+<div class="ttc" id="aclass_graph_html_a9dc20c898262dea494c7b49f7c51ebf1"><div class="ttname"><a href="class_graph.html#a9dc20c898262dea494c7b49f7c51ebf1">Graph::diameter</a></div><div class="ttdeci">unsigned diameter()</div><div class="ttdef"><b>Definition:</b> Graph.cpp:222</div></div>
+<div class="ttc" id="aclass_graph_html_aa135928f9732e47be6286598744ee004"><div class="ttname"><a href="class_graph.html#aa135928f9732e47be6286598744ee004">Graph::getAirlinesCodes</a></div><div class="ttdeci">std::vector&lt; std::string &gt; getAirlinesCodes(int src, int dest, const std::unordered_set&lt; std::string &gt; &amp;filter={}) const</div><div class="ttdef"><b>Definition:</b> Graph.cpp:39</div></div>
+<div class="ttc" id="aclass_graph_html_ad7cbe9a327bf5dfaf0f1fab6ad902fe3"><div class="ttname"><a href="class_graph.html#ad7cbe9a327bf5dfaf0f1fab6ad902fe3">Graph::getMinPath</a></div><div class="ttdeci">std::vector&lt; int &gt; getMinPath(int dest, int min) const</div><div class="ttdef"><b>Definition:</b> Graph.cpp:53</div></div>
+<div class="ttc" id="astruct_edge_html"><div class="ttname"><a href="struct_edge.html">Edge</a></div><div class="ttdef"><b>Definition:</b> Graph.h:15</div></div>
+<div class="ttc" id="astruct_edge_html_aca2560fff0b32dfa72cf0fa0eed0a1bd"><div class="ttname"><a href="struct_edge.html#aca2560fff0b32dfa72cf0fa0eed0a1bd">Edge::airlineCode</a></div><div class="ttdeci">std::string airlineCode</div><div class="ttdef"><b>Definition:</b> Graph.h:17</div></div>
+<div class="ttc" id="astruct_edge_html_ad7df434ff7710e69f28bb31e91a35f82"><div class="ttname"><a href="struct_edge.html#ad7df434ff7710e69f28bb31e91a35f82">Edge::dest</a></div><div class="ttdeci">int dest</div><div class="ttdef"><b>Definition:</b> Graph.h:16</div></div>
+<div class="ttc" id="astruct_node_html"><div class="ttname"><a href="struct_node.html">Node</a></div><div class="ttdef"><b>Definition:</b> Graph.h:20</div></div>
+<div class="ttc" id="astruct_node_html_a21710cf107065e5d1b3902a429f4949e"><div class="ttname"><a href="struct_node.html#a21710cf107065e5d1b3902a429f4949e">Node::adj</a></div><div class="ttdeci">std::list&lt; Edge &gt; adj</div><div class="ttdef"><b>Definition:</b> Graph.h:22</div></div>
+<div class="ttc" id="astruct_node_html_a420f57dad14f36839b73b16454f89608"><div class="ttname"><a href="struct_node.html#a420f57dad14f36839b73b16454f89608">Node::distance</a></div><div class="ttdeci">int distance</div><div class="ttdef"><b>Definition:</b> Graph.h:24</div></div>
+<div class="ttc" id="astruct_node_html_a522918bb40ece082ac9829afc9289b05"><div class="ttname"><a href="struct_node.html#a522918bb40ece082ac9829afc9289b05">Node::previous</a></div><div class="ttdeci">int previous</div><div class="ttdef"><b>Definition:</b> Graph.h:25</div></div>
+<div class="ttc" id="astruct_node_html_a5779685e4a9e62efa64145eb95bae0ce"><div class="ttname"><a href="struct_node.html#a5779685e4a9e62efa64145eb95bae0ce">Node::num</a></div><div class="ttdeci">int num</div><div class="ttdef"><b>Definition:</b> Graph.h:26</div></div>
+<div class="ttc" id="astruct_node_html_a94e0b7f69fa2d2b0058b926204f8068a"><div class="ttname"><a href="struct_node.html#a94e0b7f69fa2d2b0058b926204f8068a">Node::low</a></div><div class="ttdeci">int low</div><div class="ttdef"><b>Definition:</b> Graph.h:27</div></div>
+<div class="ttc" id="astruct_node_html_aa1bdec4e775fc578632e6a2dced9e251"><div class="ttname"><a href="struct_node.html#aa1bdec4e775fc578632e6a2dced9e251">Node::visited</a></div><div class="ttdeci">bool visited</div><div class="ttdef"><b>Definition:</b> Graph.h:23</div></div>
+<div class="ttc" id="astruct_node_html_abe67c194d29b4f7b73058f2edf810b2e"><div class="ttname"><a href="struct_node.html#abe67c194d29b4f7b73058f2edf810b2e">Node::airportCode</a></div><div class="ttdeci">std::string airportCode</div><div class="ttdef"><b>Definition:</b> Graph.h:21</div></div>
+<div class="ttc" id="astruct_node_html_aff140ff2d6025617836459da4b327d1c"><div class="ttname"><a href="struct_node.html#aff140ff2d6025617836459da4b327d1c">Node::inStack</a></div><div class="ttdeci">bool inStack</div><div class="ttdef"><b>Definition:</b> Graph.h:28</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado por&#160;<a href="https://www.doxygen.org/index.html"><img class="footer" src="doxygen.svg" width="104" height="31" alt="doxygen"/></a> 1.9.5
+</small></address>
+</body>
+</html>

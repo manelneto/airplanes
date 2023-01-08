@@ -65,7 +65,7 @@ int Airport::getNumber() const {
 }
 
 /**Compara o aeroporto e rhs quanto ao código IATA.
- * <br>Complexidade Temporal: O(n), sendo n o maior tamanho entre os códigos IATA
+ * <br>Complexidade Temporal: O(n), sendo n o maior comprimento entre os códigos IATA
  * @param rhs aeroporto com o qual comparar
  * @return true se o aeroporto e rhs têm igual código IATA, false caso contrário
  */

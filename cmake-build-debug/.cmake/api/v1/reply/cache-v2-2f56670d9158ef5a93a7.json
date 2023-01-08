@@ -1243,7 +1243,7 @@
 				}
 			],
 			"type" : "FILEPATH",
-			"value" : "DOXYGEN_DOT_EXECUTABLE-NOTFOUND"
+			"value" : "C:/Program Files/Graphviz/bin/dot.exe"
 		},
 		{
 			"name" : "DOXYGEN_EXECUTABLE",
@@ -1271,7 +1271,7 @@
 				}
 			],
 			"type" : "INTERNAL",
-			"value" : "[C:/Program Files/doxygen/bin/doxygen.exe][cfound components: doxygen missing components: dot][v1.9.5 (2f6875a5ca481a69a6f32650c77a667f87d25e88)()]"
+			"value" : "[C:/Program Files/doxygen/bin/doxygen.exe][cfound components: doxygen dot ][v1.9.5 (2f6875a5ca481a69a6f32650c77a667f87d25e88)()]"
 		},
 		{
 			"name" : "airplanes_BINARY_DIR",
