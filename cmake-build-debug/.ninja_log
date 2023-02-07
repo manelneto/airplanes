@@ -7,3 +7,9 @@
 23	1375	6948155154280513	CMakeFiles/airplanes.dir/Graph.cpp.obj	f1e91e207af73faf
 5	2577	6948156427540075	CMakeFiles/airplanes.dir/Management.cpp.obj	4f60da0f284d55d1
 20	859	6949172241167949	build.ninja	130105f8101dffc9
+16	679	6949172547952215	CMakeFiles/airplanes.dir/City.cpp.obj	f0a0b67ea814a8b5
+9	680	6949172547952215	CMakeFiles/airplanes.dir/Airline.cpp.obj	241d9dccca7c268b
+12	682	6949172547972190	CMakeFiles/airplanes.dir/Airport.cpp.obj	a1615c7bce8b99cb
+4	938	6949172550552591	CMakeFiles/airplanes.dir/main.cpp.obj	5b98d3422950408b
+21	1575	6949172556853291	CMakeFiles/airplanes.dir/Management.cpp.obj	4f60da0f284d55d1
+1576	2196	6949172563059311	airplanes.exe	4247659433aed1cb
